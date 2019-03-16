@@ -54,7 +54,7 @@ int WordBed[] = {17, 18, 19, -1};
 int WordGin[] = {5, 4, 3, -1};
 int WordWine[] = {120,119,96,95,-1};
 int WordTea[] = {2, 1, 0, -1};
-int WordWhisky[5, 4, 3, 2, 1, 0, -1];
+int WordWhisky[] = {5, 4, 3, 2, 1, 0, -1};
 int WordLets[] = {12, 13, 14, 15, -1};
 int WordCount[] = {19, 20, 21, 22, 23, -1};
 int WordSheep[] = {11, 10, 9, 8, 7, -1};
