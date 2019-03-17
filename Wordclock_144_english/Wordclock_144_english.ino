@@ -1,18 +1,17 @@
 #include <NTPtimeESP.h>
-#define DEBUG_ON
-NTPtime NTPch("time.google.com");   // Choose server pool as required
+NTPtime NTPch("pool.ntp.org");   // Choose server pool as required
 strDateTime dateTime;
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 #include <WiFiManager.h>   
-
+#include <DNSServer.h>
 #include <Adafruit_NeoPixel.h>
 #define PIN            D8
 #define NUMPIXELS     144
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
-byte second, minute, hour, dayOfWeek, month, year;
+byte second, minute, hour, dayOfWeek, month, year, hournow;
 byte decToBcd(byte val)
 {
   return ( (val / 10 * 16) + (val % 10) );
@@ -147,7 +146,7 @@ void loop()
       lightup(WordGin, Black);
       lightup(WordTime, Black);
       lightup(WordWine, Black);
-       lightup(WordLets, darkblue);
+      lightup(WordLets, darkblue);
       lightup(WordCount, darkblue);
       lightup(WordSheep, darkblue);
     }
@@ -804,7 +803,6 @@ void displayTime()
   readtime(&second, &minute, &hour, &dayOfWeek, &month, &year);
 
   
-
   if (hour < 10) {
     Serial.print("0");
   }
@@ -815,7 +813,7 @@ void displayTime()
     Serial.print("0");
   }
   Serial.println(minute);
-  delay(200);
+  delay(1000);
 
 }
 
@@ -827,10 +825,12 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
   *second = dateTime.second;
   *minute = dateTime.minute;
   //*hour = bcdToDec(Wire.read() & 0x3f);
-  *hour = dateTime.hour;
+  hournow = dateTime.hour;
+  *hour = hournow -1;
   *dayOfWeek = dateTime.dayofWeek;
   *month = dateTime.month;
   *year = dateTime.year;
+  
   }
 }
 
@@ -908,30 +908,5 @@ void test() {
   blank();
   wipe();
   blank();
-//  flash();
-}
 
-void flash() {
-
-  blank();
-  for (int y = 0; y < 10; ++y) {
-    for (int x = 0; x < NUMPIXELS; x = x + 2) {
-      pixels.setPixelColor(x, Pink);
-    }
-    pixels.setBrightness(dayBrightness);
-    pixels.show();
-    delay(50);
-    blank();
-    delay(50);
-
-    for (int x = 1; x < NUMPIXELS; x = x + 2) {
-      pixels.setPixelColor(x, Pink);
-    }
-    pixels.setBrightness(dayBrightness);
-    pixels.show();
-    delay(50);
-    blank();
-    delay(50);
-  }
-  blank();
 }
