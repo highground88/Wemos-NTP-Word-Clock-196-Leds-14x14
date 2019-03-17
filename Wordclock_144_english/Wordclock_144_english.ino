@@ -8,7 +8,7 @@ strDateTime dateTime;
 #include <Adafruit_NeoPixel.h>
 #define PIN            D8
 #define NUMPIXELS     144
-
+#define PinButton      D7
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 byte second, minute, hour, dayOfWeek, month, year, hournow;
@@ -96,7 +96,7 @@ void setup()
   MyWifiManager.autoConnect("Word Clock");
   Serial.println("WiFi connected");
   pixels.setBrightness(dayBrightness);
-  
+  pinMode(PinButton, INPUT);
 
   test(); //run basic screen tests
 
@@ -491,6 +491,7 @@ void loop()
     switch (hour) {
       case 1:
       case 13:
+        
         lightup(WordOne, Black);
         lightup(WordTwo, White);
         lightup(WordThree, Black);
@@ -824,7 +825,7 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
   if(dateTime.valid){
   *second = dateTime.second;
   *minute = dateTime.minute;
-  //*hour = bcdToDec(Wire.read() & 0x3f);
+
   hournow = dateTime.hour;
   *hour = hournow -1;
   *dayOfWeek = dateTime.dayofWeek;
