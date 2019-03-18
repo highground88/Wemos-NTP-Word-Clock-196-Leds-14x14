@@ -133,7 +133,6 @@ void loop()
     }
     else if (hour == 21) {
       // turn off messages
-
       lightup(WordFor, Black);
       lightup(WordA, Black);
       lightup(WordWhisky, Black);
@@ -146,7 +145,6 @@ void loop()
       lightup(WordFor, Black);
       lightup(WordA, Black);
       lightup(WordWhisky, Black);
-      lightup(WordTime, Black);
       lightup(WordWine, Black);
       lightup(WordLets, darkblue);
       lightup(WordCount, darkblue);
@@ -158,7 +156,6 @@ void loop()
       lightup(WordFor, Black);
       lightup(WordA, Black);
       lightup(WordWhisky, Black);
-      lightup(WordTime, Black);
       lightup(WordWine, Black);
       lightup(WordLets, Black);
       lightup(WordCount, Black);
@@ -171,7 +168,6 @@ void loop()
         lightup(WordFor, Black);
         lightup(WordA, Black);
         lightup(WordWhisky, Black);
-        lightup(WordTime, Black);
         lightup(WordWine, Black);
         lightup(WordLets, Black);
         lightup(WordCount, Black);
@@ -183,7 +179,6 @@ void loop()
         lightup(WordFor, Black);
         lightup(WordA, Black);
         lightup(WordWhisky, Black);
-        lightup(WordTime, Black);
         lightup(WordWine, Black);
         lightup(WordLets, Black);
         lightup(WordCount, Black);
@@ -197,7 +192,6 @@ void loop()
         lightup(WordFor, Black);
         lightup(WordA, Black);
         lightup(WordWhisky, Black);
-        lightup(WordTime, Black);
         lightup(WordWine, Black);
         lightup(WordLets, Black);
         lightup(WordCount, Black);
