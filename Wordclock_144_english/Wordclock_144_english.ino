@@ -296,7 +296,12 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        //lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
+        
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -311,7 +316,11 @@ void loop()
         lightup(WordTwo, White);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        //lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -326,7 +335,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, White);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -341,7 +354,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, White);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -371,7 +388,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, White);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -386,7 +407,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, White);
         lightup(WordEight, Black);
@@ -401,7 +426,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        //lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, White);
@@ -416,7 +445,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        //lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -431,7 +464,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        //lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -446,7 +483,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -461,7 +502,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -492,7 +537,11 @@ void loop()
         lightup(WordTwo, White);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -507,7 +556,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, White);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -522,7 +575,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, White);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -552,7 +609,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, White);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -567,7 +628,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, White);
         lightup(WordEight, Black);
@@ -582,7 +647,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, White);
@@ -597,7 +666,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -612,7 +685,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -627,7 +704,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -642,7 +723,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -657,7 +742,11 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        if (hour == 21){
+          
+          }
+        else {lightup(WordFive, Black);
+        }
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
