@@ -326,7 +326,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, White);
         lightup(WordFour, Black);
-        //lightup(WordFive, Black);
+        lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -341,7 +341,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, White);
-       // lightup(WordFive, Black);
+        lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -371,7 +371,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-       // lightup(WordFive, Black);
+        lightup(WordFive, Black);
         lightup(WordSix, White);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -386,7 +386,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-       // lightup(WordFive, Black);
+        lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, White);
         lightup(WordEight, Black);
@@ -817,7 +817,7 @@ void displayTime()
 
 
 void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
-  dateTime = NTPch.getNTPtime(0.0, 0);
+  dateTime = NTPch.getNTPtime(0.0, 1);
   if(dateTime.valid){
   *second = dateTime.second;
   *minute = dateTime.minute;
