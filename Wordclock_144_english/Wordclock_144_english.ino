@@ -1,5 +1,6 @@
 #include <NTPtimeESP.h>
-NTPtime NTPch("pool.ntp.org");   // Choose server pool as required
+#define DEBUG_ON
+NTPtime NTPch("uk.pool.ntp.org");   // Choose server pool as required
 strDateTime dateTime;
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
@@ -8,7 +9,9 @@ strDateTime dateTime;
 #include <Adafruit_NeoPixel.h>
 #define PIN            D8
 #define NUMPIXELS     144
-#define PinButton      D7
+//#define PinButton      D0
+const int PinButton = D0;
+int buttonState = 0;  
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 byte second, minute, hour, dayOfWeek, month, year, hournow;
@@ -50,9 +53,8 @@ int WordTime[] = {28, 27, 26, 25, -1};
 int WordFor[] = {16,17,18, -1};
 int WordA[] = {6, -1};
 int WordBed[] = {17, 18, 19, -1};
-int WordGin[] = {5, 4, 3, -1};
 int WordWine[] = {120,119,96,95,-1};
-int WordTea[] = {2, 1, 0, -1};
+int WordTea[] = {144, 143, 142, -1};
 int WordWhisky[] = {5, 4, 3, 2, 1, 0, -1};
 int WordLets[] = {12, 13, 14, 15, -1};
 int WordCount[] = {19, 20, 21, 22, 23, -1};
@@ -96,7 +98,7 @@ void setup()
   MyWifiManager.autoConnect("Word Clock");
   Serial.println("WiFi connected");
   pixels.setBrightness(dayBrightness);
-  pinMode(PinButton, INPUT);
+  pinMode(PinButton, INPUT_PULLUP);
 
   test(); //run basic screen tests
 
@@ -115,26 +117,26 @@ void loop()
       lightup(WordTime, White);
       lightup(WordFor, White);
       lightup(WordA, White);
-      lightup(WordGin, Grey);
+      lightup(WordWhisky, Grey);
     }
     else if (hour == 18) {
       lightup(WordTime, White);
       lightup(WordFor, White);
       lightup(WordA, White);
-      lightup(WordGin, Grey);
+      lightup(WordWhisky, Grey);
     }
     else if (hour == 19) {
       lightup(WordTime, White);
       lightup(WordFor, White);
       lightup(WordA, White);
-      lightup(WordGin, Grey);
+      lightup(WordWhisky, Grey);
     }
     else if (hour == 21) {
       // turn off messages
-      lightup(WordTime, Black);
+
       lightup(WordFor, Black);
       lightup(WordA, Black);
-      lightup(WordGin, Black);
+      lightup(WordWhisky, Black);
       lightup(WordTime, Gold);
       lightup(WordWine, Gold);
     }
@@ -143,7 +145,7 @@ void loop()
       lightup(WordTime, Black);
       lightup(WordFor, Black);
       lightup(WordA, Black);
-      lightup(WordGin, Black);
+      lightup(WordWhisky, Black);
       lightup(WordTime, Black);
       lightup(WordWine, Black);
       lightup(WordLets, darkblue);
@@ -155,7 +157,7 @@ void loop()
       lightup(WordTime, Black);
       lightup(WordFor, Black);
       lightup(WordA, Black);
-      lightup(WordGin, Black);
+      lightup(WordWhisky, Black);
       lightup(WordTime, Black);
       lightup(WordWine, Black);
       lightup(WordLets, Black);
@@ -168,7 +170,7 @@ void loop()
         lightup(WordTime, Black);
         lightup(WordFor, Black);
         lightup(WordA, Black);
-        lightup(WordGin, Black);
+        lightup(WordWhisky, Black);
         lightup(WordTime, Black);
         lightup(WordWine, Black);
         lightup(WordLets, Black);
@@ -180,7 +182,7 @@ void loop()
         lightup(WordTime, Black);
         lightup(WordFor, Black);
         lightup(WordA, Black);
-        lightup(WordGin, Black);
+        lightup(WordWhisky, Black);
         lightup(WordTime, Black);
         lightup(WordWine, Black);
         lightup(WordLets, Black);
@@ -194,7 +196,7 @@ void loop()
         lightup(WordTime, Black);
         lightup(WordFor, Black);
         lightup(WordA, Black);
-        lightup(WordGin, Black);
+        lightup(WordWhisky, Black);
         lightup(WordTime, Black);
         lightup(WordWine, Black);
         lightup(WordLets, Black);
@@ -300,7 +302,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        //lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -315,7 +317,7 @@ void loop()
         lightup(WordTwo, White);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        //lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -330,7 +332,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, White);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        //lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -345,7 +347,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, White);
-        lightup(WordFive, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -375,7 +377,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, White);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -390,7 +392,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, White);
         lightup(WordEight, Black);
@@ -405,7 +407,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        //lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, White);
@@ -420,7 +422,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        //lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -435,7 +437,7 @@ void loop()
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
         lightup(WordFour, Black);
-        lightup(WordFive, Black);
+        //lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -821,13 +823,28 @@ void displayTime()
 
 
 void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
-  dateTime = NTPch.getNTPtime(1.0, 1);
+  dateTime = NTPch.getNTPtime(0.0, 0);
   if(dateTime.valid){
   *second = dateTime.second;
   *minute = dateTime.minute;
-
+  //hournow = dateTime.hour;
   hournow = dateTime.hour;
-  *hour = hournow -1;
+  //check DST for UK 
+ //Change hour time for DST
+  buttonState = digitalRead(PinButton);
+  Serial.println ("Before Pin");
+  Serial.println(hournow);
+  Serial.println(*minute);
+  Serial.println(*second);
+
+  if (buttonState == LOW) {
+    Serial.println ("Button LOW");
+    
+    *hour = hournow - 1; 
+  }else {
+    *hour = hournow;
+  }
+  //*hour = hournow -1;
   *dayOfWeek = dateTime.dayofWeek;
   *month = dateTime.month;
   *year = dateTime.year;
@@ -836,6 +853,7 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
 }
 
 void lightup(int Word[], uint32_t Colour) {
+  
   for (int x = 0; x < pixels.numPixels() + 1; x++) {
     if (Word[x] == -1) {
       pixels.show();
@@ -864,7 +882,7 @@ void wipe() {
     delay(10);
     pixels.show();
   }
-  delay(50);
+  delay(30);
   for (int x = NUMPIXELS; x > -1; --x) {
     pixels.setPixelColor(x, Black);
     delay(10);
@@ -876,7 +894,7 @@ void wipe() {
     delay(10);
     pixels.show();
   }
-  delay(50);
+  delay(30);
   for (int x = NUMPIXELS; x > -1; --x) {
     pixels.setPixelColor(x, Black);
     delay(10);
@@ -888,7 +906,7 @@ void wipe() {
     delay(10);
     pixels.show();
   }
-  delay(50);
+  delay(30);
   for (int x = NUMPIXELS; x > -1; --x) {
     pixels.setPixelColor(x, Black);
     delay(10);
@@ -897,10 +915,10 @@ void wipe() {
 
   for (int x = 0; x < NUMPIXELS; x = x + 2) {
     pixels.setPixelColor(x, Red);
-    delay(50);
+    delay(30);
     pixels.show();
   }
-  delay(100);
+  delay(700);
   blank();
 
 }
