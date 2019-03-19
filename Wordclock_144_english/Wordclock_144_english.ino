@@ -911,7 +911,7 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
   *second = dateTime.second;
   *minute = dateTime.minute;
   //hournow = dateTime.hour;
-  hournow = dateTime.hour;
+  hour = dateTime.hour;
   //check DST for UK 
  //Change hour time for DST
   buttonState = digitalRead(PinButton);
@@ -920,14 +920,7 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
   Serial.println(*minute);
   Serial.println(*second);
 
-  if (buttonState == LOW) {
-    Serial.println ("Button LOW");
-    
-    *hour = hournow - 1; 
-  }else {
-    *hour = hournow;
-  }
-  //*hour = hournow -1;
+
   *dayOfWeek = dateTime.dayofWeek;
   *month = dateTime.month;
   *year = dateTime.year;
