@@ -34,32 +34,32 @@ int WordMinFive[] = {108, 109, 110, 111, -1};
 int WordQuarter[] = {112,113, 114, 115, 116, 117, 118, -1};
 int WordMinutes[] = {107, 106, 105, 104, 103, 102, 101, -1};
 int WordHalf[] = {100, 99, 98, 97, -1};
-int WordTo[] = {84, 85, -1};
+int WordTo[] = {85, 86, -1};
 int WordPast[] = {87, 88, 89, 90, -1};
-int WordFive[] = {92, 93, 94, 95, -1};
+int WordFive[] = {59, 58, 57, 56, -1};
 int WordOne[] = {83, 82, 81, -1};
 int WordTwo[] = {74, 73, 72, -1};
 int WordThree[] = {80, 79, 78, 77, 76, -1};
 int WordFour[] = {60, 61, 62, 63, -1};
-int WordSix[] = {54, 53, 52, -1};
-int WordSeven[] = {59, 58, 57, 56, 55, -1};
+int WordSix[] = {50, 49, 48, -1};
+int WordSeven[] = {55, 54, 53, 52, 51, -1};
 int WordEight[] = {67, 68, 69, 70, 71, -1};
-int WordNine[] = {51, 50, 49, 48, -1};
+int WordNine[] = {95, 94, 93, 92, -1};
 int WordTen[] = {64, 65, 66, -1};
 int WordEleven[] = {36, 37, 38, 39, 40, 41, -1};
 int WordTwelve[] = {42, 43, 44, 45, 46, 47, -1};
-int WordOclock[] = {35, 34, 33, 32, 31, 30, -1};
+int WordOclock[] = {34, 33, 32, 31, 30,29, -1};
 int WordTime[] = {28, 27, 26, 25, -1};
 int WordFor[] = {16,17,18, -1};
 int WordA[] = {6, -1};
 int WordBed[] = {17, 18, 19, -1};
 int WordWine[] = {120,119,96,95,-1};
-int WordTea[] = {144, 143, 142, -1};
+int WordTea[] = { 143, 142,141, -1};
 int WordWhisky[] = {5, 4, 3, 2, 1, 0, -1};
 int WordLets[] = {12, 13, 14, 15, -1};
 int WordCount[] = {19, 20, 21, 22, 23, -1};
 int WordSheep[] = {11, 10, 9, 8, 7, -1};
-int WordCoffee[] = {12,-1};
+int WordCoffee[] = {84,83,60,59,36,35,-1};
 int flag = 0; //used for display effects to stop it showing more than once
 
 //define colours
@@ -911,12 +911,11 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
   *second = dateTime.second;
   *minute = dateTime.minute;
   //hournow = dateTime.hour;
-  hour = dateTime.hour;
+  *hour = dateTime.hour;
   //check DST for UK 
  //Change hour time for DST
   buttonState = digitalRead(PinButton);
   Serial.println ("Before Pin");
-  Serial.println(hournow);
   Serial.println(*minute);
   Serial.println(*second);
 
