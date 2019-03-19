@@ -13,7 +13,7 @@ strDateTime dateTime;
 const int PinButton = D0;
 int buttonState = 0;  
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
-
+ 
 byte second, minute, hour, dayOfWeek, month, year, hournow;
 byte decToBcd(byte val)
 {
@@ -59,7 +59,7 @@ int WordWhisky[] = {5, 4, 3, 2, 1, 0, -1};
 int WordLets[] = {12, 13, 14, 15, -1};
 int WordCount[] = {19, 20, 21, 22, 23, -1};
 int WordSheep[] = {11, 10, 9, 8, 7, -1};
-
+int WordCoffee[] = {12,-1};
 int flag = 0; //used for display effects to stop it showing more than once
 
 //define colours
