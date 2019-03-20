@@ -162,7 +162,7 @@ void loop()
       lightup(WordSheep, Black);
     }
     //coffee  time
-    else if ((minute >= 10) && (minute <= 15) && (hour > 8) && (hour < 17)) {
+    else if ((minute >= 10) && (minute <= 15) && (hour > 6) && (hour < 17)) {
       if (hour < 12) {
         lightup(WordTime, Black);
         lightup(WordFor, Black);
@@ -172,6 +172,7 @@ void loop()
         lightup(WordLets, Black);
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
+        lightup(WordCoffee, Black);
       }
       else {
         // tea time
@@ -183,7 +184,7 @@ void loop()
         lightup(WordLets, Black);
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
-        lightup(WordTea, White);
+        lightup(WordTea, Gold);
       }
     }
     else {
