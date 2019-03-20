@@ -1,5 +1,4 @@
 #include <NTPtimeESP.h>
-#define DEBUG_ON
 NTPtime NTPch("uk.pool.ntp.org");   // Choose server pool as required
 strDateTime dateTime;
 #include <ESP8266WiFi.h>
@@ -12,6 +11,9 @@ strDateTime dateTime;
 //#define PinButton      D0
 const int PinButton = D0;
 int buttonState = 0;  
+unsigned long startMillis;  //some global variables available anywhere in the program
+unsigned long currentMillis;
+const unsigned long period = 10000;  //the value is a number of milliseconds
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
  
 byte second, minute, hour, dayOfWeek, month, year, hournow;
@@ -99,8 +101,8 @@ void setup()
   Serial.println("WiFi connected");
   pixels.setBrightness(dayBrightness);
   pinMode(PinButton, INPUT_PULLUP);
-
-  test(); //run basic screen tests
+  startMillis = millis();  //initial start time
+ // test(); //run basic screen tests
 
 
 }
@@ -117,19 +119,19 @@ void loop()
       lightup(WordTime, White);
       lightup(WordFor, White);
       lightup(WordA, White);
-      lightup(WordWhisky, Grey);
+      lightup(WordWhisky, Gold);
     }
     else if (hour == 18) {
       lightup(WordTime, White);
       lightup(WordFor, White);
       lightup(WordA, White);
-      lightup(WordWhisky, Grey);
+      lightup(WordWhisky, Gold);
     }
     else if (hour == 19) {
       lightup(WordTime, White);
       lightup(WordFor, White);
       lightup(WordA, White);
-      lightup(WordWhisky, Grey);
+      lightup(WordWhisky, Gold);
     }
     else if (hour == 21) {
       // turn off messages
@@ -137,7 +139,7 @@ void loop()
       lightup(WordA, Black);
       lightup(WordWhisky, Black);
       lightup(WordTime, Gold);
-      lightup(WordWine, Gold);
+      lightup(WordWine, Red);
     }
     else if (hour == 23) {
       // turn off messages
@@ -162,9 +164,9 @@ void loop()
       lightup(WordSheep, Black);
     }
     //coffee  time
-    else if ((minute >= 10) && (minute <= 15) && (hour > 6) && (hour < 17)) {
+    else if ((hour > 6) && (hour < 17)) {
       if (hour < 12) {
-        lightup(WordTime, Black);
+        lightup(WordTime, Gold);
         lightup(WordFor, Black);
         lightup(WordA, Black);
         lightup(WordWhisky, Black);
@@ -172,11 +174,11 @@ void loop()
         lightup(WordLets, Black);
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
-        lightup(WordCoffee, Black);
+        lightup(WordCoffee, Brown);
       }
       else {
         // tea time
-        lightup(WordTime, Black);
+        lightup(WordTime, Gold);
         lightup(WordFor, Black);
         lightup(WordA, Black);
         lightup(WordWhisky, Black);
@@ -185,6 +187,7 @@ void loop()
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
         lightup(WordTea, Gold);
+        lightup(WordCoffee, Black);
       }
     }
     else {
@@ -887,8 +890,13 @@ void TimeOfDay() {
 void displayTime()
 {
   
-  readtime(&second, &minute, &hour, &dayOfWeek, &month, &year);
-
+  //rate limit the time check 
+  currentMillis = millis();  //get the current "time" (actually the number of milliseconds since the program started)
+  if (currentMillis - startMillis >= period)  //test whether the period has elapsed
+  {
+    readtime(&second, &minute, &hour, &dayOfWeek, &month, &year);  
+    startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
+  }
   
   if (hour < 10) {
     Serial.print("0");
@@ -913,14 +921,6 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
   *minute = dateTime.minute;
   //hournow = dateTime.hour;
   *hour = dateTime.hour;
-  //check DST for UK 
- //Change hour time for DST
-  buttonState = digitalRead(PinButton);
-  Serial.println ("Before Pin");
-  Serial.println(*minute);
-  Serial.println(*second);
-
-
   *dayOfWeek = dateTime.dayofWeek;
   *month = dateTime.month;
   *year = dateTime.year;
