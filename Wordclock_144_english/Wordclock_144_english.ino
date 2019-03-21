@@ -10,8 +10,8 @@ strDateTime dateTime;
 #define NUMPIXELS     144
 //#define PinButton      D0
 const int PinButton = D0;
-byte i = 0 ;
-byte h = 4;
+byte i = 32 ;
+byte h = 10;
 int buttonState = 0;  
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis;
@@ -167,12 +167,13 @@ void loop()
     }
     //coffee  time
     else if ((hour > 5) && (hour < 17)) {
-      if (hour < 12) {
+      if (hour < 10) {
         lightup(WordTime, Gold);
         lightup(WordFor, Black);
         lightup(WordA, Black);
         lightup(WordWhisky, Black);
-        lightup(WordWine, Black);
+        //interferes with nine am (e)
+       // lightup(WordWine, Black);
         lightup(WordLets, Black);
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
@@ -180,6 +181,19 @@ void loop()
         lightup(WordCoffee, Gold);
       }
       else {
+        lightup(WordTime, Black);
+        lightup(WordFor, Black);
+        lightup(WordA, Black);
+        lightup(WordWhisky, Black);
+        lightup(WordWine, Black);
+        lightup(WordLets, Black);
+        lightup(WordCount, Black);
+        lightup(WordSheep, Black);
+        lightup(WordCoffee, Black);
+        lightup(WordTea, Black);
+        
+        }
+      if (hour > 12) {
         // tea time
         lightup(WordTime, Gold);
         lightup(WordFor, Black);
@@ -203,6 +217,7 @@ void loop()
         lightup(WordLets, Black);
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
+        lightup(WordCoffee, Black);
         lightup(WordTea, Black);
     }
   }
@@ -411,43 +426,43 @@ void loop()
         break;
       case 8:
       case 20:
-        lightup(WordOne, Black);
+       // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, White);
         lightup(WordNine, Black);
         lightup(WordTen, Black);
-        lightup(WordEleven, Black);
+       // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
         Serial.println("Break 820");
         break;
       case 9:
       case 21:
-        lightup(WordOne, Black);
+       // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
         lightup(WordNine, White);
         lightup(WordTen, Black);
-        lightup(WordEleven, Black);
+       // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
         Serial.println("Break 921");
         break;
       case 10:
       case 22:
-        lightup(WordOne, Black);
+      //  lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -459,11 +474,11 @@ void loop()
         break;
       case 11:
       case 23:
-        lightup(WordOne, Black);
+      //  lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
@@ -619,33 +634,33 @@ void loop()
         break;
       case 8:
       case 20:
-        lightup(WordOne, Black);
+       // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+      //  lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
         lightup(WordNine, White);
         lightup(WordTen, Black);
-        lightup(WordEleven, Black);
+      //  lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
         Serial.println("Half Break 820");
         break;
       case 9:
       case 21:
-        lightup(WordOne, Black);
+        //lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
         lightup(WordNine, Black);
         lightup(WordTen, White);
-        lightup(WordEleven, Black);
+       // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
         Serial.println("Half Break 921");
         break;
@@ -859,7 +874,7 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
   if(dateTime.valid){
    
   *second = 30;
-  if (i < 60){  
+  if (i < 59){  
     i++;
     *minute = i;
   }
