@@ -10,10 +10,12 @@ strDateTime dateTime;
 #define NUMPIXELS     144
 //#define PinButton      D0
 const int PinButton = D0;
+byte i = 0 ;
+byte h = 4;
 int buttonState = 0;  
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis;
-const unsigned long period = 10000;  //the value is a number of milliseconds
+const unsigned long period = 100;  //the value is a number of milliseconds
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
  
 byte second, minute, hour, dayOfWeek, month, year, hournow;
@@ -164,7 +166,7 @@ void loop()
       lightup(WordSheep, Black);
     }
     //coffee  time
-    else if ((hour > 6) && (hour < 17)) {
+    else if ((hour > 5) && (hour < 17)) {
       if (hour < 12) {
         lightup(WordTime, Gold);
         lightup(WordFor, Black);
@@ -175,7 +177,7 @@ void loop()
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
         lightup(WordTea, Black);
-        lightup(WordCoffee, Brown);
+        lightup(WordCoffee, Gold);
       }
       else {
         // tea time
@@ -309,6 +311,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 113");
         break;
       case 2:
       case 14:
@@ -324,6 +327,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println(" Break 214");
         break;
       case 3:
       case 15:
@@ -339,6 +343,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 315");
         break;
       case 4:
       case 16:
@@ -354,6 +359,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 416");
         break;
       case 5:
       case 17:
@@ -369,36 +375,39 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 517");
         break;
       case 6:
       case 18:
-        lightup(WordOne, Black);
+       // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, White);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
         lightup(WordNine, Black);
         lightup(WordTen, Black);
-        lightup(WordEleven, Black);
+       // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 618");
         break;
       case 7:
       case 19:
-        lightup(WordOne, Black);
+       // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, White);
         lightup(WordEight, Black);
         lightup(WordNine, Black);
         lightup(WordTen, Black);
-        lightup(WordEleven, Black);
+        //lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 719");
         break;
       case 8:
       case 20:
@@ -414,6 +423,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 820");
         break;
       case 9:
       case 21:
@@ -429,6 +439,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 921");
         break;
       case 10:
       case 22:
@@ -444,6 +455,7 @@ void loop()
         lightup(WordTen, White);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Break 1022");
         break;
       case 11:
       case 23:
@@ -459,6 +471,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, White);
         lightup(WordTwelve, Black);
+        Serial.println("Break 1123");
         break;
       case 00:
       case 12:
@@ -474,6 +487,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, White);
+        Serial.println("Break 0012");
         break;
     }// end of case statement
     if ((minute >= 0) && (minute < 5)) {
@@ -505,6 +519,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 113");
         break;
       case 2:
       case 14:
@@ -520,6 +535,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 214");        
         break;
       case 3:
       case 15:
@@ -535,6 +551,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 315");
         break;
       case 4:
       case 16:
@@ -550,6 +567,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 416");        
         break;
       case 5:
       case 17:
@@ -565,36 +583,39 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 517 ");
         break;
       case 6:
       case 18:
-        lightup(WordOne, Black);
+       // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, White);
         lightup(WordEight, Black);
         lightup(WordNine, Black);
         lightup(WordTen, Black);
-        lightup(WordEleven, Black);
+       // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 618");
         break;
       case 7:
       case 19:
-        lightup(WordOne, Black);
+       // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
+       // lightup(WordFour, Black);
+       // lightup(WordFive, Black);
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, White);
         lightup(WordNine, Black);
         lightup(WordTen, Black);
-        lightup(WordEleven, Black);
+       // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 719");
         break;
       case 8:
       case 20:
@@ -610,6 +631,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 820");
         break;
       case 9:
       case 21:
@@ -625,6 +647,7 @@ void loop()
         lightup(WordTen, White);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 921");
         break;
       case 10:
       case 22:
@@ -640,6 +663,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, White);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 1022");
         break;
       case 11:
       case 23:
@@ -655,6 +679,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, White);
+        Serial.println("Half Break 1123");
         break;
       case 00:
       case 12:
@@ -670,6 +695,7 @@ void loop()
         lightup(WordTen, Black);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
+        Serial.println("Half Break 0012");
         break;
     }// end of case statement
     lightup(WordPast, Black);
@@ -828,16 +854,32 @@ void displayTime()
 
 
 void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
-
+  
   dateTime = NTPch.getNTPtime(0.0, 1);
   if(dateTime.valid){
-  *second = dateTime.second;
-  *minute = dateTime.minute;
+   
+  *second = 30;
+  if (i < 60){  
+    i++;
+    *minute = i;
+  }
+  else {i = 0;
+  h++;
+  }
+
   //hournow = dateTime.hour;
-  *hour = dateTime.hour;
-  *dayOfWeek = dateTime.dayofWeek;
-  *month = dateTime.month;
-  *year = dateTime.year;
+  *hour = h;
+  *dayOfWeek = 3;
+  *month = 4;
+  *year = 2019;
+//    
+//  *second = dateTime.second;
+//  *minute = dateTime.minute;
+//  //hournow = dateTime.hour;
+//  *hour = dateTime.hour;
+//  *dayOfWeek = dateTime.dayofWeek;
+//  *month = dateTime.month;
+//  *year = dateTime.year;
  
   
   }
