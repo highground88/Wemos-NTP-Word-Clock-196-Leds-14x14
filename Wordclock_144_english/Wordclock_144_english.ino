@@ -8,17 +8,15 @@ strDateTime dateTime;
 #include <Adafruit_NeoPixel.h>
 #define PIN            D8
 #define NUMPIXELS     144
-//#define PinButton      D0
-const int PinButton = D0;
-byte i = 32 ;
-byte h = 10;
-int buttonState = 0;  
+
+
+
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis;
-const unsigned long period = 100;  //the value is a number of milliseconds
+const unsigned long period = 500;  //the value is a number of milliseconds - change while debugging to lower rate
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
  
-byte second, minute, hour, dayOfWeek, month, year, hournow;
+byte second, minute, hour, dayOfWeek, month, year;
 byte decToBcd(byte val)
 {
   return ( (val / 10 * 16) + (val % 10) );
@@ -42,6 +40,9 @@ int WordTo[] = {85, 86, -1};
 int WordPast[] = {87, 88, 89, 90, -1};
 int WordFive[] = {59, 58, 57, 56, -1};
 int WordOne[] = {83, 82, 81, -1};
+//used only when coffee is lit so it doesn't blink 
+int Wordne[] = { 82, 81, -1};
+
 int WordTwo[] = {74, 73, 72, -1};
 int WordThree[] = {80, 79, 78, 77, 76, -1};
 int WordFour[] = {60, 61, 62, 63, -1};
@@ -49,6 +50,7 @@ int WordSix[] = {50, 49, 48, -1};
 int WordSeven[] = {55, 54, 53, 52, 51, -1};
 int WordEight[] = {67, 68, 69, 70, 71, -1};
 int WordNine[] = {95, 94, 93, 92, -1};
+int WordNin[] = {94, 93, 92, -1};
 int WordTen[] = {64, 65, 66, -1};
 int WordEleven[] = {36, 37, 38, 39, 40, 41, -1};
 int WordTwelve[] = {42, 43, 44, 45, 46, 47, -1};
@@ -64,6 +66,7 @@ int WordLets[] = {12, 13, 14, 15, -1};
 int WordCount[] = {19, 20, 21, 22, 23, -1};
 int WordSheep[] = {11, 10, 9, 8, 7, -1};
 int WordCoffee[] = {84,83,60,59,36,35,-1};
+int WordCE[] = {84,35,-1};
 int flag = 0; //used for display effects to stop it showing more than once
 
 //define colours
@@ -79,18 +82,19 @@ uint32_t whiteblue = pixels.Color(255, 255, 255);
 uint32_t lightblue = pixels.Color(153, 204, 255);
 uint32_t midblue = pixels.Color(0, 102, 204);
 uint32_t darkblue = pixels.Color(0, 0, 255);
-//coffee
-uint32_t Brown = pixels.Color(153, 102, 051);
-//ME!
-uint32_t Pink = pixels.Color(255, 153, 153);
+
 
 int dayBrightness = 100;
-int nightBrightness = 50;
-
+int nightBrightness = 30;
+  byte i;
+  byte h ;
 
 void setup()
 {
-  
+  //used for manual debugging
+   i = 0 ;
+   h = 22;
+  //start pixels
   pixels.begin();
   blank();
   Serial.begin(115200);
@@ -102,7 +106,6 @@ void setup()
   MyWifiManager.autoConnect("Word Clock");
   Serial.println("WiFi connected");
   pixels.setBrightness(dayBrightness);
-  pinMode(PinButton, INPUT_PULLUP);
   startMillis = millis();  //initial start time
  // test(); //run basic screen tests
 
@@ -122,18 +125,22 @@ void loop()
       lightup(WordFor, White);
       lightup(WordA, White);
       lightup(WordWhisky, Gold);
+      lightup(WordTea, Black);
+      Serial.print("whisky time 1");
     }
     else if (hour == 18) {
       lightup(WordTime, White);
       lightup(WordFor, White);
       lightup(WordA, White);
       lightup(WordWhisky, Gold);
+      Serial.print("whisky time 2");
     }
     else if (hour == 19) {
       lightup(WordTime, White);
       lightup(WordFor, White);
       lightup(WordA, White);
       lightup(WordWhisky, Gold);
+      Serial.print("whisky time 3");
     }
     else if (hour == 21) {
       // turn off messages
@@ -142,6 +149,8 @@ void loop()
       lightup(WordWhisky, Black);
       lightup(WordTime, Gold);
       lightup(WordWine, Red);
+      Serial.println("21 wine");
+      
     }
     else if (hour == 23) {
       // turn off messages
@@ -153,8 +162,9 @@ void loop()
       lightup(WordLets, darkblue);
       lightup(WordCount, darkblue);
       lightup(WordSheep, darkblue);
+      Serial.print("turn on sheep");
     }
-        else if (hour == 24) {
+        else if ((hour == 23) && (minute == 59)) {
       // turn off messages
       lightup(WordTime, Black);
       lightup(WordFor, Black);
@@ -164,6 +174,7 @@ void loop()
       lightup(WordLets, Black);
       lightup(WordCount, Black);
       lightup(WordSheep, Black);
+      Serial.println("its midnight clear the sheep");
     }
     //coffee  time
     else if ((hour > 5) && (hour < 17)) {
@@ -179,20 +190,15 @@ void loop()
         lightup(WordSheep, Black);
         lightup(WordTea, Black);
         lightup(WordCoffee, Gold);
-      }
-      else {
-        lightup(WordTime, Black);
-        lightup(WordFor, Black);
-        lightup(WordA, Black);
-        lightup(WordWhisky, Black);
-        lightup(WordWine, Black);
-        lightup(WordLets, Black);
-        lightup(WordCount, Black);
-        lightup(WordSheep, Black);
-        lightup(WordCoffee, Black);
-        lightup(WordTea, Black);
+        Serial.println("coffee before 10");
         
         }
+      if ((hour >= 10) && (hour <12))
+      {
+        lightup(WordTime, Black);
+        lightup(WordCE, Black);
+        Serial.println("btw 10 and 12");
+        } 
       if (hour > 12) {
         // tea time
         lightup(WordTime, Gold);
@@ -204,7 +210,8 @@ void loop()
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
         lightup(WordTea, Gold);
-        lightup(WordCoffee, Black);
+        //lightup(WordCoffee, Black);
+        Serial.println("tea time past 12");
       }
     }
     else {
@@ -213,12 +220,14 @@ void loop()
         lightup(WordFor, Black);
         lightup(WordA, Black);
         lightup(WordWhisky, Black);
+       if (hour == 22){
         lightup(WordWine, Black);
+       }
         lightup(WordLets, Black);
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
-        lightup(WordCoffee, Black);
         lightup(WordTea, Black);
+        Serial.println("turn off messages nothing special");
     }
   }
   // light up "it's" it stays on
@@ -314,6 +323,7 @@ void loop()
     switch (hour) {
       case 1:
       case 13:
+      
         lightup(WordOne, White);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
@@ -394,6 +404,7 @@ void loop()
         break;
       case 6:
       case 18:
+          lightup(Wordne, Black);
        // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
@@ -410,7 +421,7 @@ void loop()
         break;
       case 7:
       case 19:
-       // lightup(WordOne, Black);
+        lightup(Wordne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
        // lightup(WordFour, Black);
@@ -426,7 +437,7 @@ void loop()
         break;
       case 8:
       case 20:
-       // lightup(WordOne, Black);
+        lightup(Wordne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
        // lightup(WordFour, Black);
@@ -442,7 +453,7 @@ void loop()
         break;
       case 9:
       case 21:
-       // lightup(WordOne, Black);
+        lightup(Wordne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
        // lightup(WordFour, Black);
@@ -450,7 +461,14 @@ void loop()
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
-        lightup(WordNine, White);
+        if (hour == 21){
+            lightup(WordNin, White);
+          }
+        else
+        {
+            lightup(WordNine, White);
+          }
+      
         lightup(WordTen, Black);
        // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
@@ -464,9 +482,10 @@ void loop()
        // lightup(WordFour, Black);
        // lightup(WordFive, Black);
         lightup(WordSix, Black);
+        lightup(WordCoffee, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
-        lightup(WordNine, Black);
+        lightup(WordNin, Black);
         lightup(WordTen, White);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
@@ -658,7 +677,13 @@ void loop()
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
-        lightup(WordNine, Black);
+        if (hour == 21){
+            lightup(WordNin, Black);
+          }
+        else
+        {
+            lightup(WordNine, Black);
+          }
         lightup(WordTen, White);
        // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
@@ -850,19 +875,19 @@ void displayTime()
     Serial.println("Time Check");
     readtime(&second, &minute, &hour, &dayOfWeek, &month, &year);  
     startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
-  }
-  
-  if (hour < 10) {
-    Serial.print("0");
-  }
-  Serial.print(hour);
-  Serial.print(":");
 
-  if (minute < 10) {
-    Serial.print("0");
   }
-  Serial.println(minute);
-  delay(1000);
+        if (hour < 10) {
+      Serial.print("0");
+    }
+    Serial.print(hour);
+    Serial.print(":");
+  
+    if (minute < 10) {
+      Serial.print("0");
+    }
+    Serial.println(minute);
+    delay(500);
 
 }
 
@@ -870,34 +895,39 @@ void displayTime()
 
 void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
   
-  dateTime = NTPch.getNTPtime(0.0, 1);
-  if(dateTime.valid){
-   
-  *second = 30;
-  if (i < 59){  
-    i++;
-    *minute = i;
-  }
-  else {i = 0;
-  h++;
-  }
+//   dateTime = NTPch.getNTPtime(0.0, 1);
+//  if(dateTime.valid){
+//  For manual time testing. you must comment out datetime.valid and ntpch to get time checking faster  
+      if (i <= 59){  
+        if (i == 59){
+           h++;
+           *hour = h;
+           i = 0;
+        }
+        i++;
+        *minute = i;
+        *hour = h;
+      }
 
-  //hournow = dateTime.hour;
-  *hour = h;
-  *dayOfWeek = 3;
-  *month = 4;
-  *year = 2019;
-//    
-//  *second = dateTime.second;
-//  *minute = dateTime.minute;
-//  //hournow = dateTime.hour;
-//  *hour = dateTime.hour;
-//  *dayOfWeek = dateTime.dayofWeek;
-//  *month = dateTime.month;
-//  *year = dateTime.year;
+
+      if (h >23){
+        h =0;}
+      
+    *second = dateTime.second;
+    *dayOfWeek = dateTime.dayofWeek;
+    *month = dateTime.month;
+    *year = dateTime.year;   
+
+        
+//      *second = dateTime.second;
+//      *minute = dateTime.minute;
+//      *hour = dateTime.hour;
+//      *dayOfWeek = dateTime.dayofWeek;
+//      *month = dateTime.month;
+//      *year = dateTime.year;
  
+//}
   
-  }
 }
 
 void lightup(int Word[], uint32_t Colour) {
