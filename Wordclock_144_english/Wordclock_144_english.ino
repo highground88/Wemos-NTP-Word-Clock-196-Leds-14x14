@@ -13,7 +13,14 @@ strDateTime dateTime;
 
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis;
-const unsigned long period = 500;  //the value is a number of milliseconds - change while debugging to lower rate
+
+//change update values if debugging is on to make debugging quicker
+const unsigned long period = 10000;
+//change to 0 for debugging 1 is normal operation 
+int debugging = 1;
+
+
+
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
  
 byte second, minute, hour, dayOfWeek, month, year;
@@ -26,6 +33,8 @@ byte bcdToDec(byte val)
 {
   return ( (val / 16 * 10) + (val % 16) );
 }
+
+
 
 //Actual words as array variables
 int WordIts[] = {132, 133, 134, -1};
@@ -88,12 +97,14 @@ int dayBrightness = 100;
 int nightBrightness = 30;
   byte i;
   byte h ;
+  byte d ;
 
 void setup()
 {
-  //used for manual debugging
+  //used for manual debugging/ set start time 
    i = 0 ;
-   h = 22;
+   h = 8;
+   d = 1;
   //start pixels
   pixels.begin();
   blank();
@@ -107,8 +118,15 @@ void setup()
   Serial.println("WiFi connected");
   pixels.setBrightness(dayBrightness);
   startMillis = millis();  //initial start time
- // test(); //run basic screen tests
-
+//Serial print if debug is on 
+  if (debugging == 0)
+  {
+    Serial.println("Debug on");
+  }
+  else {
+    Serial.println("Debug off");
+    test(); //run basic screen tests
+    }
 
 }
 
@@ -485,7 +503,18 @@ void loop()
         lightup(WordCoffee, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
-        lightup(WordNin, Black);
+        if ((dayOfWeek == 1) | (dayOfWeek == 7))
+        {
+          lightup(WordNine,Black);
+        }
+        else if (hour == 9)
+        {
+        lightup(WordNine, Black);
+        }
+        else 
+        {
+          lightup(WordNin, Black);
+        }
         lightup(WordTen, White);
         lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
@@ -677,13 +706,18 @@ void loop()
         lightup(WordSix, Black);
         lightup(WordSeven, Black);
         lightup(WordEight, Black);
-        if (hour == 21){
-            lightup(WordNin, Black);
-          }
-        else
+        if ((dayOfWeek == 1) | (dayOfWeek == 7))
         {
-            lightup(WordNine, Black);
-          }
+          lightup(WordNine,Black);
+        }
+        else if (hour == 9)
+        {
+        lightup(WordNine, Black);
+        }
+        else 
+        {
+          lightup(WordNin, Black);
+        }
         lightup(WordTen, White);
        // lightup(WordEleven, Black);
         lightup(WordTwelve, Black);
@@ -872,7 +906,7 @@ void displayTime()
   currentMillis = millis();  //get the current "time" (actually the number of milliseconds since the program started)
   if (currentMillis - startMillis >= period)  //test whether the period has elapsed
   {
-    Serial.println("Time Check");
+    Serial.println("Time Check rate reached");
     readtime(&second, &minute, &hour, &dayOfWeek, &month, &year);  
     startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
 
@@ -894,10 +928,20 @@ void displayTime()
 
 
 void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
-  
-//   dateTime = NTPch.getNTPtime(0.0, 1);
-//  if(dateTime.valid){
-//  For manual time testing. you must comment out datetime.valid and ntpch to get time checking faster  
+  if (debugging == 1){
+      dateTime = NTPch.getNTPtime(0.0, 1);
+      if(dateTime.valid){
+      *second = dateTime.second;
+      *minute = dateTime.minute;
+      *hour = dateTime.hour;
+      *dayOfWeek = dateTime.dayofWeek;
+      *month = dateTime.month;
+      *year = dateTime.year;
+
+        }
+      }
+    else {
+      //  For manual time testing. you must comment out datetime.valid and ntpch to get time checking faster  
       if (i <= 59){  
         if (i == 59){
            h++;
@@ -913,21 +957,12 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
       if (h >23){
         h =0;}
       
-    *second = dateTime.second;
-    *dayOfWeek = dateTime.dayofWeek;
-    *month = dateTime.month;
-    *year = dateTime.year;   
-
-        
-//      *second = dateTime.second;
-//      *minute = dateTime.minute;
-//      *hour = dateTime.hour;
-//      *dayOfWeek = dateTime.dayofWeek;
-//      *month = dateTime.month;
-//      *year = dateTime.year;
+      *second = dateTime.second;
+      *dayOfWeek = d;
+      *month = dateTime.month;
+      *year = dateTime.year;   
+      }
  
-//}
-  
 }
 
 void lightup(int Word[], uint32_t Colour) {
