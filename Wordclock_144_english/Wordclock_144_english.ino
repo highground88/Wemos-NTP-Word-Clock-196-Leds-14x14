@@ -51,7 +51,6 @@ int WordFive[] = {59, 58, 57, 56, -1};
 int WordOne[] = {83, 82, 81, -1};
 //used only when coffee is lit so it doesn't blink 
 int Wordne[] = { 82, 81, -1};
-
 int WordTwo[] = {74, 73, 72, -1};
 int WordThree[] = {80, 79, 78, 77, 76, -1};
 int WordFour[] = {60, 61, 62, 63, -1};
@@ -59,6 +58,7 @@ int WordSix[] = {50, 49, 48, -1};
 int WordSeven[] = {55, 54, 53, 52, 51, -1};
 int WordEight[] = {67, 68, 69, 70, 71, -1};
 int WordNine[] = {95, 94, 93, 92, -1};
+//used only when wine is lit to not blink
 int WordNin[] = {94, 93, 92, -1};
 int WordTen[] = {64, 65, 66, -1};
 int WordEleven[] = {36, 37, 38, 39, 40, 41, -1};
@@ -75,6 +75,7 @@ int WordLets[] = {12, 13, 14, 15, -1};
 int WordCount[] = {19, 20, 21, 22, 23, -1};
 int WordSheep[] = {11, 10, 9, 8, 7, -1};
 int WordCoffee[] = {84,83,60,59,36,35,-1};
+//used for different if thens to not blink
 int WordCE[] = {84,35,-1};
 int flag = 0; //used for display effects to stop it showing more than once
 
@@ -92,12 +93,13 @@ uint32_t lightblue = pixels.Color(153, 204, 255);
 uint32_t midblue = pixels.Color(0, 102, 204);
 uint32_t darkblue = pixels.Color(0, 0, 255);
 
-
+//values for brightness
 int dayBrightness = 100;
 int nightBrightness = 30;
-  byte i;
-  byte h ;
-  byte d ;
+//values for debugging hour/day  i increment 
+byte i;
+byte h ;
+byte d ;
 
 void setup()
 {
@@ -108,6 +110,7 @@ void setup()
   //start pixels
   pixels.begin();
   blank();
+  //start serial
   Serial.begin(115200);
   Serial.println();
   Serial.println("Booted");
@@ -136,7 +139,7 @@ void loop()
   TimeOfDay(); //set brightness dependant on time of day
   displayTime(); // display the real-time clock data on the Serial Monitor  and the LEDS,
 
-  //home time
+  //home time serial for debugging if statements
   if ((dayOfWeek != 1) && (dayOfWeek != 7)) {
     if (hour == 17) {
       lightup(WordTime, White);
