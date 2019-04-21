@@ -70,7 +70,7 @@ int WordA[] = {6, -1};
 int WordBed[] = {17, 18, 19, -1};
 int WordWine[] = {120,119,96,95,-1};
 int WordTea[] = { 143, 142,141, -1};
-int WordWhisky[] = {5, 4, 3, 2, 1, 0, -1};
+
 int WordBacon[] = {5, 4, 3, 2, 1,-1};
 int WordLets[] = {12, 13, 14, 15, -1};
 int WordCount[] = {19, 20, 21, 22, 23, -1};
@@ -105,9 +105,9 @@ byte d ;
 void setup()
 {
   //used for manual debugging/ set start time 
-   i = 0 ;
-   h = 8;
-   d = 1;
+   i = 30 ;
+   h = 5;
+   d = 2;
   //start pixels
   pixels.begin();
   blank();
@@ -147,7 +147,7 @@ void loop()
       lightup(WordTime, Black);
       lightup(WordFor, Black);
       lightup(WordA, Black);
-      lightup(WordWhisky, Black);
+     
       lightup(WordWine, Black);
       lightup(WordLets, darkblue);
       lightup(WordCount, darkblue);
@@ -159,7 +159,7 @@ void loop()
       lightup(WordTime, Black);
       lightup(WordFor, Black);
       lightup(WordA, Black);
-      lightup(WordWhisky, Black);
+    
       lightup(WordWine, Black);
       lightup(WordLets, Black);
       lightup(WordCount, Black);
@@ -172,8 +172,9 @@ void loop()
         lightup(WordTime, Gold);
         lightup(WordFor, Black);
         lightup(WordA, Black);
-        lightup(WordWhisky, Black);
-        lightup(WordWine, Black);
+      
+       // lightup(WordWine, Black);
+        lightup(WordBacon, Gold);
         lightup(WordLets, Black);
         lightup(WordCount, Black);
         lightup(WordSheep, Black);
@@ -186,6 +187,7 @@ void loop()
       {
         lightup(WordTime, Black);
         lightup(WordCE, Black);
+        lightup(WordBacon, Black);
         Serial.println("btw 10 and 12");
         } 
       if (hour > 12) {
@@ -193,7 +195,7 @@ void loop()
         lightup(WordTime, Gold);
         lightup(WordFor, Black);
         lightup(WordA, Black);
-        lightup(WordWhisky, Black);
+        
         lightup(WordWine, Black);
         lightup(WordLets, Black);
         lightup(WordCount, Black);
@@ -208,7 +210,7 @@ void loop()
         lightup(WordTime, Black);
         lightup(WordFor, Black);
         lightup(WordA, Black);
-        lightup(WordWhisky, Black);
+     
        if (hour == 22){
         lightup(WordWine, Black);
        }
@@ -397,6 +399,7 @@ void loop()
        // lightup(WordOne, Black);
         lightup(WordTwo, Black);
         lightup(WordThree, Black);
+       // lightup(WordBacon, Black);
        // lightup(WordFour, Black);
        // lightup(WordFive, Black);
         lightup(WordSix, White);
@@ -882,7 +885,7 @@ void displayTime()
 
 void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
   if (debugging == 1){
-      dateTime = NTPch.getNTPtime(0.0, 1);
+      dateTime = NTPch.getNTPtime(-6.0, 2);
       if(dateTime.valid){
       *second = dateTime.second;
       *minute = dateTime.minute;
