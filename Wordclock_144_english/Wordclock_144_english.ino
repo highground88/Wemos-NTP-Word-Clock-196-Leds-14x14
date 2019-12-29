@@ -195,6 +195,12 @@ void loop()
       lightup(WordLets, Black);
       lightup(WordCount, Black);
       lightup(WordSheep, Black);
+      if ((dayOfWeek == 1) | (dayOfWeek == 7))
+        {
+            lightup(WordLets, Black);
+            lightup(WordCount, Black);
+            lightup(WordSheep, Black);
+        }
       Serial.println("its midnight clear the sheep");
     }
     //coffee  time
