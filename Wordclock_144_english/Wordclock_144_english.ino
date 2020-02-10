@@ -23,7 +23,7 @@ int debugging = 1;
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
  
-byte second, minute, hour, dayOfWeek, month, year;
+byte second, minute, hour, dayOfWeek, day, month, year;
 byte decToBcd(byte val)
 {
   return ( (val / 10 * 16) + (val % 10) );
@@ -35,16 +35,13 @@ byte bcdToDec(byte val)
 }
 
 
-//Actual words 
+//Descriptors
 int WordIts[] = {187,186,185, -1};
 int WordItIs[] = {187,186,183,182, -1};
 int WordIt[] = {187,186, -1};
 int WordIs[] = {183,182, -1};
 int WordItjustS[] = {185, -1}; //Just the ['S]
-
 int WordAbout[] = {197, -1};
-//int WordMinTen[] = {149,130,121, -1};
-//int WordMinFive[] = {122,123,124,125, -1};
 int WordMinute[] = {83,82,81,80,79,78, -1};
 int WordMinutes[] = {83,82,81,80,79,78,77, -1};
 int WordMinuteTo[] = {83,82,81,80,79,78,73,72, -1};
@@ -67,6 +64,7 @@ int WordNine[] = {133,132,131,130, -1};
 int WordTen[] = {149,130,121, -1};
 int WordEleven[] = {106,105,104,103,102,101, -1};
 int WordTwelve[] = {111,110,109,108,107,106, -1};
+int WordTwelv[] = {111,110,109,108,107, -1};
 int WordThirteen[] = {161,160,159,158,157,156,155,154, -1};
 int WordFourteen[] = {112,113,114,115,116,117,118,119, -1};
 int WordQuarter[] = {175,176,177,178,179,180,181, -1};
@@ -77,20 +75,21 @@ int WordNineteen[] = {133,132,131,130,129,128,127,126, -1};
 int WordTwenty[] = {167,166,165,164,163,162, -1};
 int WordHalf[] = {168,169,170,171, -1};
 
-//Lower Half [HOURS]
+//Hours [LOWER]
 int WordHOne[] = {58,59,60, -1};
 int WordHTwo[] = {56,57,58, -1};
 int WordHThree[] = {99,96,71,68,43, -1};
 int WordHFour[] = {33,34,35,36, -1};
 int WordHFive[] = {55,54,53,52, -1};
-int WordHSix[] = {99,97,70, -1};
+int WordHSix[] = {98,97,70, -1};
 int WordHSeven[] = {37,38,39,40,41, -1};
 int WordHEight[] = {52,51,50,49,48, -1};
 int WordHNine[] = {65,66,67,68, -1};
 int WordHTen[] = {69,42,41, -1};
 int WordHEleven[] = {60,61,62,63,64,65, -1};
 int WordHTwelve[] = {48,47,46,45,44,43, -1};
-
+int WordHTwelv[] = {48,47,46,45,44, -1};   // FIX leftover TWELVE to prevent cross with THREE
+int WordHWelve[] = {47,46,45,44,43, -1};   // FIX leftover TWELVE to prevent cross with EIGHT
 //BONUS WORDS
 int WordCoffee[] = {23,22,21,20,19,18,14, -1};
 int WordTea[] = {17,16,15,14, -1};
@@ -258,6 +257,7 @@ void loop()
         lightup(WordHTwo, Black);
         lightup(WordHThree, White);
         lightup(WordHFour, Black);
+        lightup(WordHTwelv, Black);         // FIX leftover TWELVE
         Serial.println("Break 315");
         break;
       case 4:
@@ -294,6 +294,7 @@ void loop()
         lightup(WordHSeven, Black);
         lightup(WordHEight, White);
         lightup(WordHNine, Black);
+        lightup(WordHWelve, Black);         // FIX leftover 'OCLOCK & TWELVE
         Serial.println("Break 820");
         break;
       case 9:
@@ -325,16 +326,6 @@ void loop()
         Serial.println("Break 0012");
         break;
     }// end of case statement
- //   if ((minute >= 0) && (minute < 5)) {
-//    if ((minute >= 0) && (minute < 30)) {
-//      lightup(WordMinutes, Black);
-//      lightup(WordTo,   Black);
-//    }
-//    else {
-//      lightup(WordPast, White);
-//      lightup(WordTo,   Black);
-//    }
-
   }//end of if statement
 
   else if (minute >= 31) {
@@ -342,7 +333,6 @@ void loop()
     switch (hour) {
       case 1:
       case 13:
-        
         lightup(WordHOne, Black);
         lightup(WordHTwo, White);
         lightup(WordHThree, Black);
@@ -353,6 +343,7 @@ void loop()
         lightup(WordHTwo, Black);
         lightup(WordHThree, White);
         lightup(WordHFour, Black);
+        lightup(WordHTwelv, Black);         // FIX leftover TWELVE
         Serial.println("Half Break 214");        
         break;
       case 3:
@@ -388,6 +379,7 @@ void loop()
         lightup(WordHSeven, Black);
         lightup(WordHEight, White);
         lightup(WordHNine, Black);
+        lightup(WordHWelve, Black);         // FIX leftover TWELVE
         Serial.println("Half Break 719");
         break;
       case 8:
@@ -426,10 +418,15 @@ void loop()
         Serial.println("Half Break 0012");
         break;
     }// end of case statement
-//    lightup(WordPast, Black); ///////////////////////////// ??????????????????????????????????
-//    lightup(WordTo,   White);
-  } // end of if statement to test for greater than 34
-
+  } // end of if statement to test for greater than 30
+  if ((hour != 12)                          // FIX leftover 'OCLOCK & TWELVE
+      | (hour != 8) 
+      | (hour != 3)) {
+      lightup(WordHTwelve, Black);      
+  }
+  if (minute != 0) {     // FIX leftover 'OCLOCK 
+    lightup(WordOclock, Black);
+  }
   if (minute == 0) {
     lightup(WordOne, Black);
     lightup(WordTo, Black);
@@ -439,12 +436,13 @@ void loop()
   }
   else if (minute == 1) {
     lightup(WordOne, White);
+    lightup(WordMinute, White); 
     lightup(WordPast, White); 
     lightup(WordOclock, Black);
   }
   else if (minute == 2) {
-    lightup(WordOne, Black);
     lightup(WordTwo, White);
+    lightup(WordOne, Black);
     lightup(WordPast, White); 
   }
   else if (minute == 3) {
@@ -604,7 +602,7 @@ void loop()
     lightup(WordNine, White);
     lightup(WordTwenty, White);
     lightup(WordHalf, Black);   
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
     lightup(WordPast, Black); 
    }
@@ -612,180 +610,180 @@ void loop()
     lightup(WordEight, White);
     lightup(WordNine, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 33) {
     lightup(WordSeven, White);
     lightup(WordEight, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);       
   }
   else if (minute == 34) {
     lightup(WordSix, White);
     lightup(WordSeven, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 35) {
     lightup(WordFive, White);
     lightup(WordSix, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 36) {
     lightup(WordFour, White);
     lightup(WordFive, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 37) {
     lightup(WordThree, White);
     lightup(WordFour, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 38) {
     lightup(WordTwo, White);
     lightup(WordThree, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 39) {
     lightup(WordOne, White);
     lightup(WordTwo, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 40) {
     lightup(WordOne, Black);
     lightup(WordTwenty, White);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, Black);    
   }
   else if (minute == 41) {
     lightup(WordNineteen, White);
     lightup(WordTwenty, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 42) {
     lightup(WordEighteen, White);
     lightup(WordNineteen, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 43) {
     lightup(WordSeventeen, White);
     lightup(WordEighteen, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 44) {
     lightup(WordSixteen, White);
     lightup(WordSeventeen, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 45) {
     lightup(WordQuarter, White);
     lightup(WordA, White);
     lightup(WordSixteen, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, Black);    
   }
   else if (minute == 46) {
     lightup(WordFourteen, White);
     lightup(WordQuarter, Black);
     lightup(WordA, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 47) {
     lightup(WordThirteen, White);
     lightup(WordFourteen, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 48) {
     lightup(WordTwelve, White);
     lightup(WordThirteen, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White); 
   }
   else if (minute == 49) {
     lightup(WordEleven, White);
-    lightup(WordTwelve, Black);
-    lightup(WordTo, White);
+    lightup(WordTwelv, Black);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 50) {
-    lightup(WordTen, Black);
+    lightup(WordTen, White);
     lightup(WordEleven, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
      lightup(WordMinutes, Black);    
   }
   else if (minute == 51) {
     lightup(WordNine, White);
     lightup(WordTen, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 52) {
     lightup(WordEight, White);
     lightup(WordNine, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 53) {
     lightup(WordSeven, White);
     lightup(WordEight, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 54) {
     lightup(WordSix, White);
     lightup(WordSeven, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 55) {
     lightup(WordFive, White);
     lightup(WordSix, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, Black);  
   }
   else if (minute == 56) {
     lightup(WordFour, White);
     lightup(WordFive, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 57) {
     lightup(WordThree, White);
     lightup(WordFour, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 58) {
     lightup(WordTwo, White);
     lightup(WordThree, Black);
-    lightup(WordTo, White);
+    lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
   else if (minute == 59) {
     lightup(WordOne, White);
     lightup(WordTwo, Black);
-    lightup(WordTo, White);
-    lightup(WordMinute, White); 
-    lightup(WordMinutes, Black);    
+    lightup(WordTo, midblue);
+    lightup(WordMinutes, Black);  
+    lightup(WordMinute, Black);    
   }
   
 }
@@ -821,7 +819,7 @@ void displayTime()
   if (currentMillis - startMillis >= period)  //test whether the period has elapsed
   {
     Serial.println("Time Check rate reached");
-    readtime(&second, &minute, &hour, &dayOfWeek, &month, &year);  
+    readtime(&second, &minute, &hour, &dayOfWeek, &day, &month, &year);  
     startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
 
   }
@@ -841,14 +839,17 @@ void displayTime()
 
 
 
-void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
+void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *day, byte *month, byte *year) {
   if (debugging == 1){
       dateTime = NTPch.getNTPtime(0.0, 1);
+  //    10 setSendInterval(unsigned long _sendInterval);  // in seconds
+  //    15 setRecvTimeout(unsigned long _recvTimeout);    // in seconds
       if(dateTime.valid){
       *second = dateTime.second;
       *minute = dateTime.minute;
       *hour = dateTime.hour;
       *dayOfWeek = dateTime.dayofWeek;
+      *day = dateTime.day;
       *month = dateTime.month;
       *year = dateTime.year;
 
