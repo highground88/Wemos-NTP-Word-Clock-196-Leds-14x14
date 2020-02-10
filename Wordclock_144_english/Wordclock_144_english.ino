@@ -40,6 +40,8 @@ int WordIts[] = {187,186,185, -1};
 int WordItIs[] = {187,186,183,182, -1};
 int WordIt[] = {187,186, -1};
 int WordIs[] = {183,182, -1};
+int WordItjustS[] = {185, -1}; //Just the ['S]
+
 int WordAbout[] = {197, -1};
 //int WordMinTen[] = {149,130,121, -1};
 //int WordMinFive[] = {122,123,124,125, -1};
@@ -95,6 +97,7 @@ int WordTea[] = {17,16,15,14, -1};
 int WordBeer[] = {27,26,25,24,14, -1};
 int WordJo[] = {195,194, -1};
 int WordJoanne[] = {195,194,193,192,191,190, -1};
+int Wordanne[] = {193,192,191,190, -1};
 int WordJoannes[] = {195,194,193,192,191,190,189 -1};
 int WordAt[] = {175,174, -1};
 int WordIn[] = {120,121, -1};
@@ -154,6 +157,7 @@ void setup()
   MyWifiManager.autoConnect("Word Clock Setup");
   Serial.println("WiFi connected");
   pixels.setBrightness(dayBrightness);
+
   startMillis = millis();  //initial start time
 //Serial print if debug is on 
   if (debugging == 0)
@@ -169,10 +173,9 @@ void setup()
 
 void loop()
 {
-
+  //pixels.clear();
   TimeOfDay(); //set brightness dependant on time of day
   displayTime(); // display the real-time clock data on the Serial Monitor  and the LEDS,
- // lightup(WordWifi, Black);
 
   //home time serial for debugging if statements
   if ((dayOfWeek != 1) && (dayOfWeek != 7)) {
@@ -210,45 +213,31 @@ void loop()
       lightup(WordQuestion, Black);
       Serial.print("clear the drinks");
     }
-
-//        else if ((hour == 23) && (minute == 59)) {
-//      // turn off messages
-//      lightup(WordBeer, Black);
-//      lightup(WordTea, Black);
-//      lightup(WordQuestion, Black);
-//      lightup(WordCoffee, Black);
-//    }
   }
-  // light up "it's" it stays on
-  //lightup(WordItIs, White); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //lightup(WordIs, White);
-  // If it's bang on 5 mins, or 10 mins etc, it's not 'about' so turn it off.
+
   if ((minute == 0) 
       | (minute == 15)
       | (minute == 30)
       | (minute == 45)) {
     lightup(WordIts, Blue);
-    lightup(WordItIs, Black);
-    lightup(WordIt, Black);
+//    lightup(WordItIs, Black);
+//    lightup(WordItjustS, Black);
     lightup(WordIs, Black);
     lightup(WordJoanne, Pink);
-    lightup(WordJo, Black);
   }
   else if (((minute >= 1) && (minute <= 14))
         | ((minute >= 16) && (minute <= 29))
         | ((minute >= 31) && (minute <= 44))
         | ((minute >= 46) && (minute <= 59))) {
-      lightup(WordIts, Black);
+//      lightup(WordIts, Black);
+      lightup(WordItjustS, Black);
       lightup(WordItIs, midblue);
-      lightup(WordJoanne, Black);
+      lightup(Wordanne, Black);
       lightup(WordJo, Red);
     }
    
-  
-
- // if (minute < 35) {
   if (minute <= 30) {
-    //Set hour if minutes are less than 35
+    //Set hour if minutes are less than 30
     switch (hour) {
       case 1:
       case 13:
@@ -446,7 +435,7 @@ void loop()
     lightup(WordTo, Black);
     lightup(WordMinute, Black); 
     lightup(WordPast, Black); 
-    lightup(WordOclock, darkblue);          
+    lightup(WordOclock, darkblue);      
   }
   else if (minute == 1) {
     lightup(WordOne, White);
@@ -846,7 +835,7 @@ void displayTime()
       Serial.print("0");
     }
     Serial.println(minute);
-    delay(500);
+    delay(5000);
 
 }
 
