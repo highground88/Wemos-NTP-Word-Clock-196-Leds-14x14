@@ -103,6 +103,10 @@ int WordHappy[] = {28,29,30,31,32, -1};
 int WordBirthday[] = {0,1,2,3,4,5,6,7, -1};
 int WordHappyBirthday[] = {0,1,2,3,4,5,6,7,28,29,30,31,32, -1};
 int WordQuestion[] = {14, -1};
+int WordWifi[] = {110,54,122,66,14, -1};
+
+int WordAllLetters[] = {0 - 197, -1};
+
 
 
 int flag = 0; //used for display effects to stop it showing more than once
@@ -116,7 +120,6 @@ uint32_t Gold = pixels.Color(255, 204, 0);
 uint32_t Grey = pixels.Color(30, 30, 30);
 uint32_t Blue = pixels.Color(0, 0, 255);
 uint32_t Brown = pixels.Color(153, 102, 051);
-//About colours
 uint32_t whiteblue = pixels.Color(255, 255, 255);
 uint32_t lightblue = pixels.Color(153, 204, 255);
 uint32_t midblue = pixels.Color(0, 102, 204);
@@ -143,6 +146,7 @@ void setup()
   //start serial
   Serial.begin(115200);
   Serial.println();
+  lightup(WordWifi, Red);
   Serial.println("Booted");
   Serial.println("Connecting to Wi-Fi");
 // We start by connecting to a WiFi network
@@ -168,6 +172,7 @@ void loop()
 
   TimeOfDay(); //set brightness dependant on time of day
   displayTime(); // display the real-time clock data on the Serial Monitor  and the LEDS,
+ // lightup(WordWifi, Black);
 
   //home time serial for debugging if statements
   if ((dayOfWeek != 1) && (dayOfWeek != 7)) {
@@ -194,25 +199,25 @@ void loop()
       lightup(WordQuestion, Black);
       Serial.print("clear the drinks");
     }
-    else if ((hour > 16) && (hour < 20)) {
+    else if ((hour > 16) && (hour < 21)) {
       lightup(WordBeer, Gold);
       lightup(WordQuestion, Gold);
 
       Serial.print("beer time");
     }
-    else if (hour == 21) {
+    else if (hour == 22) {
       lightup(WordBeer, Black);
       lightup(WordQuestion, Black);
       Serial.print("clear the drinks");
     }
 
-        else if ((hour == 23) && (minute == 59)) {
-      // turn off messages
-      lightup(WordBeer, Black);
-      lightup(WordTea, Black);
-      lightup(WordQuestion, Black);
-      lightup(WordCoffee, Black);
-    }
+//        else if ((hour == 23) && (minute == 59)) {
+//      // turn off messages
+//      lightup(WordBeer, Black);
+//      lightup(WordTea, Black);
+//      lightup(WordQuestion, Black);
+//      lightup(WordCoffee, Black);
+//    }
   }
   // light up "it's" it stays on
   //lightup(WordItIs, White); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,8 +237,7 @@ void loop()
   else if (((minute >= 1) && (minute <= 14))
         | ((minute >= 16) && (minute <= 29))
         | ((minute >= 31) && (minute <= 44))
-        | ((minute >= 46) && (minute <= 59))
-        | ((minute >= 1) && (minute <= 14))) {
+        | ((minute >= 46) && (minute <= 59))) {
       lightup(WordIts, Black);
       lightup(WordItIs, midblue);
       lightup(WordJoanne, Black);
