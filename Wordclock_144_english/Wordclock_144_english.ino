@@ -6,8 +6,8 @@ strDateTime dateTime;
 #include <WiFiManager.h>   
 #include <DNSServer.h>
 #include <Adafruit_NeoPixel.h>
-#define PIN            D8
-#define NUMPIXELS     144
+#define PIN            D5
+#define NUMPIXELS     197
 
 
 
@@ -35,48 +35,118 @@ byte bcdToDec(byte val)
 }
 
 
-
+///////////////////////////////////////////OLD CODE
 //Actual words as array variables
-int WordIts[] = {132, 133, 134, -1};
-int WordAbout[] = {136, 137, 138, 139, 140, -1};
-int WordTwenty[] = {131, 130, 129, 128, 127, 126, -1};
-int WordMinTen[] = {124, 123, 122, -1};
-int WordMinFive[] = {108, 109, 110, 111, -1};
-int WordQuarter[] = {112,113, 114, 115, 116, 117, 118, -1};
-int WordMinutes[] = {107, 106, 105, 104, 103, 102, 101, -1};
-int WordHalf[] = {100, 99, 98, 97, -1};
-int WordTo[] = {85, 86, -1};
-int WordPast[] = {87, 88, 89, 90, -1};
-int WordFive[] = {59, 58, 57, 56, -1};
-int WordOne[] = {83, 82, 81, -1};
-//used only when coffee is lit so it doesn't blink 
-int Wordne[] = { 82, 81, -1};
-int WordTwo[] = {74, 73, 72, -1};
-int WordThree[] = {80, 79, 78, 77, 76, -1};
-int WordFour[] = {60, 61, 62, 63, -1};
-int WordSix[] = {50, 49, 48, -1};
-int WordSeven[] = {55, 54, 53, 52, 51, -1};
-int WordEight[] = {67, 68, 69, 70, 71, -1};
-int WordNine[] = {95, 94, 93, 92, -1};
-//used only when wine is lit to not blink
-int WordNin[] = {94, 93, 92, -1};
-int WordTen[] = {64, 65, 66, -1};
-int WordEleven[] = {36, 37, 38, 39, 40, 41, -1};
-int WordTwelve[] = {42, 43, 44, 45, 46, 47, -1};
-int WordOclock[] = {34, 33, 32, 31, 30,29, -1};
-int WordTime[] = {28, 27, 26, 25, -1};
-int WordFor[] = {16,17,18, -1};
-int WordA[] = {6, -1};
-int WordBed[] = {17, 18, 19, -1};
-int WordWine[] = {120,119,96,95,-1};
-int WordTea[] = { 143, 142,141, -1};
-int WordWhisky[] = {5, 4, 3, 2, 1, 0, -1};
-int WordLets[] = {12, 13, 14, 15, -1};
-int WordCount[] = {19, 20, 21, 22, 23, -1};
-int WordSheep[] = {11, 10, 9, 8, 7, -1};
-int WordCoffee[] = {84,83,60,59,36,35,-1};
+//int WordIts[] = {132, 133, 134, -1};
+//int WordAbout[] = {136, 137, 138, 139, 140, -1};
+//int WordTwenty[] = {131, 130, 129, 128, 127, 126, -1};
+//int WordMinTen[] = {124, 123, 122, -1};
+//int WordMinFive[] = {108, 109, 110, 111, -1};
+//int WordQuarter[] = {112,113, 114, 115, 116, 117, 118, -1};
+//int WordMinutes[] = {107, 106, 105, 104, 103, 102, 101, -1};
+//int WordHalf[] = {100, 99, 98, 97, -1};
+//int WordTo[] = {85, 86, -1};
+//int WordPast[] = {87, 88, 89, 90, -1};
+//int WordFive[] = {59, 58, 57, 56, -1};
+//int WordOne[] = {83, 82, 81, -1};
+////used only when coffee is lit so it doesn't blink 
+//int Wordne[] = { 82, 81, -1};
+//int WordTwo[] = {74, 73, 72, -1};
+//int WordThree[] = {80, 79, 78, 77, 76, -1};
+//int WordFour[] = {60, 61, 62, 63, -1};
+//int WordSix[] = {50, 49, 48, -1};
+//int WordSeven[] = {55, 54, 53, 52, 51, -1};
+//int WordEight[] = {67, 68, 69, 70, 71, -1};
+//int WordNine[] = {95, 94, 93, 92, -1};
+////used only when wine is lit to not blink
+//int WordNin[] = {94, 93, 92, -1};
+//int WordTen[] = {64, 65, 66, -1};
+//int WordEleven[] = {36, 37, 38, 39, 40, 41, -1};
+//int WordTwelve[] = {42, 43, 44, 45, 46, 47, -1};
+//int WordOclock[] = {34, 33, 32, 31, 30,29, -1};
+//int WordTime[] = {28, 27, 26, 25, -1};
+//int WordFor[] = {16,17,18, -1};
+//int WordA[] = {6, -1};
+//int WordBed[] = {17, 18, 19, -1};
+//int WordWine[] = {120,119,96,95,-1};
+//int WordTea[] = { 143, 142,141, -1};
+//int WordWhisky[] = {5, 4, 3, 2, 1, 0, -1};
+//int WordLets[] = {12, 13, 14, 15, -1};
+//int WordCount[] = {19, 20, 21, 22, 23, -1};
+//int WordSheep[] = {11, 10, 9, 8, 7, -1};
+//int WordCoffee[] = {84,83,60,59,36,35,-1};
 //used for different if thens to not blink
-int WordCE[] = {84,35,-1};
+//int WordCE[] = {84,35,-1};
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Actual words 
+int WordIts[] = {187,186,185, -1};
+int WordItIs[] = {187,186,183,182, -1};
+int WordIt[] = {187,186, -1};
+int WordIs[] = {183,182, -1};
+int WordAbout[] = {197, -1};
+//int WordMinTen[] = {149,130,121, -1};
+//int WordMinFive[] = {122,123,124,125, -1};
+int WordMinute[] = {83,82,81,80,79,78, -1};
+int WordMinutes[] = {83,82,81,80,79,78,77, -1};
+int WordMinuteTo[] = {83,82,81,80,79,78,73,72, -1};
+int WordMinutesTo[] = {83,82,81,80,79,78,77,73,72, -1};
+int WordTo[] = {73,72, -1};
+int WordPast[] = {76,75,74,73, -1};
+int WordOclock[] = {8,9,10,11,12,13, -1};
+
+//Minutes [UPPER]
+int WordOne[] = {151,152,153, -1};
+int WordTwo[] = {149,150,151, -1};
+int WordThree[] = {84,85,86,87,88, -1};
+int WordFour[] = {112,113,114,115, -1};
+int WordFive[] = {122,123,124,125, -1};
+int WordSix[] = {139,138,137, -1};
+int WordSeven[] = {140,141,142,143,144, -1};
+int WordEight[] = {88,89,90,91,92, -1};
+int WordNine[] = {133,132,131,130, -1};
+int WordTen[] = {149,130,121, -1};
+int WordEleven[] = {106,105,104,103,102,101, -1};
+int WordTwelve[] = {111,110,109,108,107,106, -1};
+int WordThirteen[] = {161,160,159,158,157,156,155,154, -1};
+int WordFourteen[] = {112,113,114,115,116,117,118,119, -1};
+int WordQuarter[] = {175,176,177,178,179,180,181, -1};
+int WordSixteen[] = {139,138,137,136,135,134,133, -1};
+int WordSeventeen[] = {140,141,142,143,144,145,146,147,148, -1};
+int WordEighteen[] = {88,89,90,91,92,93,94,95, -1};
+int WordNineteen[] = {133,132,131,130,129,128,127,126, -1};
+int WordTwenty[] = {167,166,165,164,163,162, -1};
+
+//Lower Half [HOURS]
+int WordHOne[] = {58,59,60, -1};
+int WordHTwo[] = {56,57,58, -1};
+int WordHThree[] = {99,96,71,68,43, -1};
+int WordHFour[] = {33,34,35,36, -1};
+int WordHFive[] = {55,54,53,52, -1};
+int WordHSix[] = {99,97,70, -1};
+int WordHSeven[] = {37,38,39,40,41, -1};
+int WordHEight[] = {52,51,50,49,48, -1};
+int WordHNine[] = {65,66,67,68, -1};
+int WordHTen[] = {69,42,41, -1};
+int WordHEleven[] = {60,61,62,63,64,65, -1};
+int WordHTwelve[] = {48,47,46,45,44,43, -1};
+
+//BONUS WORDS
+int WordCoffee[] = {23,22,21,20,19,18,14, -1};
+int WordTea[] = {17,16,15,14, -1};
+int WordBeer[] = {27,26,25,24,14, -1};
+int WordJo[] = {195,194, -1};
+int WordJoanne[] = {195,194,193,192,191,190, -1};
+int WordJoannes[] = {195,194,193,192,191,190,189 -1};
+int WordAt[] = {175,174, -1};
+int WordIn[] = {120,121, -1};
+int WordNot[] = {101,100,99, -1};
+int WordHappy[] = {28,29,30,31,32, -1};
+int WordBirthday[] = {0,1,2,3,4,5,6,7, -1};
+int WordHappyBirthday[] = {0,1,2,3,4,5,6,7,28,29,30,31,32, -1};
+int WordQuestion[] = {14, -1};
+
+
 int flag = 0; //used for display effects to stop it showing more than once
 
 //define colours
@@ -87,11 +157,13 @@ uint32_t Red = pixels.Color(255, 0, 0);
 uint32_t Gold = pixels.Color(255, 204, 0);
 uint32_t Grey = pixels.Color(30, 30, 30);
 uint32_t Blue = pixels.Color(0, 0, 255);
+uint32_t Brown = pixels.Color(153, 102, 051);
 //About colours
 uint32_t whiteblue = pixels.Color(255, 255, 255);
 uint32_t lightblue = pixels.Color(153, 204, 255);
 uint32_t midblue = pixels.Color(0, 102, 204);
 uint32_t darkblue = pixels.Color(0, 0, 255);
+uint32_t Pink = pixels.Color(255, 153, 153);
 
 //values for brightness
 int dayBrightness = 100;
@@ -117,7 +189,7 @@ void setup()
   Serial.println("Connecting to Wi-Fi");
 // We start by connecting to a WiFi network
   WiFiManager MyWifiManager;
-  MyWifiManager.autoConnect("Word Clock");
+  MyWifiManager.autoConnect("Word Clock Setup");
   Serial.println("WiFi connected");
   pixels.setBrightness(dayBrightness);
   startMillis = millis();  //initial start time
@@ -141,429 +213,297 @@ void loop()
 
   //home time serial for debugging if statements
   if ((dayOfWeek != 1) && (dayOfWeek != 7)) {
-    if (hour == 17) {
-      lightup(WordTime, White);
-      lightup(WordFor, White);
-      lightup(WordA, White);
-      lightup(WordWhisky, Gold);
+    if ((hour > 5) && (hour < 10)) {
+      lightup(WordBeer, Black);
       lightup(WordTea, Black);
-      Serial.print("whisky time 1");
+      lightup(WordQuestion, Brown);
+      lightup(WordCoffee, Brown);
+      lightup(WordOclock, Black);
+      Serial.print("coffee time");
     }
-    else if (hour == 18) {
-      lightup(WordTime, White);
-      lightup(WordFor, White);
-      lightup(WordA, White);
-      lightup(WordWhisky, Gold);
-      Serial.print("whisky time 2");
+    else if (hour ==11) {
+      lightup(WordBeer, Black);
+      lightup(WordTea, Black);
+      lightup(WordQuestion, Black);
+      lightup(WordCoffee, Black);
+      lightup(WordOclock, Black);
+      Serial.print("clear the drinks");
     }
-    else if (hour == 19) {
-      lightup(WordTime, White);
-      lightup(WordFor, White);
-      lightup(WordA, White);
-      lightup(WordWhisky, Gold);
-      Serial.print("whisky time 3");
+    else if (hour == 15) {
+      lightup(WordBeer, Black);
+      lightup(WordTea, Green);
+      lightup(WordQuestion, Green);
+      lightup(WordCoffee, Black);
+      lightup(WordOclock, Black); //dont use same time as 00 hour
+      Serial.print("tea time");
     }
-    else if (hour == 21) {
-      // turn off messages
-      lightup(WordFor, Black);
-      lightup(WordA, Black);
-      lightup(WordWhisky, Black);
-      lightup(WordTime, Gold);
-      lightup(WordWine, Red);
-      Serial.println("21 wine");
-      
+    else if (hour ==16) {
+      lightup(WordBeer, Black);
+      lightup(WordTea, Black);
+      lightup(WordQuestion, Black);
+      lightup(WordCoffee, Black);
+      lightup(WordOclock, Black);
+      Serial.print("clear the drinks");
     }
-    else if (hour == 23) {
-      // turn off messages
-      lightup(WordTime, Black);
-      lightup(WordFor, Black);
-      lightup(WordA, Black);
-      lightup(WordWhisky, Black);
-      lightup(WordWine, Black);
-      lightup(WordLets, darkblue);
-      lightup(WordCount, darkblue);
-      lightup(WordSheep, darkblue);
-      Serial.print("turn on sheep");
+    else if ((hour > 16) && (hour < 20)) {
+      lightup(WordBeer, Gold);
+      lightup(WordTea, Black);
+      lightup(WordQuestion, Gold);
+      lightup(WordCoffee, Black);
+      lightup(WordOclock, Black);
+      Serial.print("beer time");
     }
+    else if (hour ==21) {
+      lightup(WordBeer, Black);
+      lightup(WordTea, Black);
+      lightup(WordQuestion, Black);
+      lightup(WordCoffee, Black);
+      lightup(WordOclock, Black);
+      Serial.print("clear the drinks");
+    }
+
         else if ((hour == 23) && (minute == 59)) {
       // turn off messages
-      lightup(WordTime, Black);
-      lightup(WordFor, Black);
-      lightup(WordA, Black);
-      lightup(WordWhisky, Black);
-      lightup(WordWine, Black);
-      lightup(WordLets, Black);
-      lightup(WordCount, Black);
-      lightup(WordSheep, Black);
-      if ((dayOfWeek == 1) | (dayOfWeek == 7))
-        {
-            lightup(WordLets, Black);
-            lightup(WordCount, Black);
-            lightup(WordSheep, Black);
-        }
-      Serial.println("its midnight clear the sheep");
-    }
-    //coffee  time
-    else if ((hour > 5) && (hour < 17)) {
-      if (hour < 10) {
-        lightup(WordTime, Gold);
-        lightup(WordFor, Black);
-        lightup(WordA, Black);
-        lightup(WordWhisky, Black);
-        //interferes with nine am (e)
-       // lightup(WordWine, Black);
-        lightup(WordLets, Black);
-        lightup(WordCount, Black);
-        lightup(WordSheep, Black);
-        lightup(WordTea, Black);
-        lightup(WordCoffee, Gold);
-        Serial.println("coffee before 10");
-        
-        }
-      if ((hour >= 10) && (hour <12))
-      {
-        lightup(WordTime, Black);
-        lightup(WordCE, Black);
-        Serial.println("btw 10 and 12");
-        } 
-      if (hour > 12) {
-        // tea time
-        lightup(WordTime, Gold);
-        lightup(WordFor, Black);
-        lightup(WordA, Black);
-        lightup(WordWhisky, Black);
-        lightup(WordWine, Black);
-        lightup(WordLets, Black);
-        lightup(WordCount, Black);
-        lightup(WordSheep, Black);
-        lightup(WordTea, Gold);
-        //lightup(WordCoffee, Black);
-        Serial.println("tea time past 12");
-      }
-    }
-    else {
-      // turn off messages
-        lightup(WordTime, Black);
-        lightup(WordFor, Black);
-        lightup(WordA, Black);
-        lightup(WordWhisky, Black);
-       if (hour == 22){
-        lightup(WordWine, Black);
-       }
-        lightup(WordLets, Black);
-        lightup(WordCount, Black);
-        lightup(WordSheep, Black);
-        lightup(WordTea, Black);
-        Serial.println("turn off messages nothing special");
+      lightup(WordBeer, Black);
+      lightup(WordTea, Black);
+      lightup(WordQuestion, Black);
+      lightup(WordCoffee, Black);
+      lightup(WordOclock, Black);
+
     }
   }
   // light up "it's" it stays on
-  lightup(WordIts, White);
+  //lightup(WordItIs, White); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //lightup(WordIs, White);
   // If it's bang on 5 mins, or 10 mins etc, it's not 'about' so turn it off.
-  if ((minute == 0)
-      | (minute == 5)
-      | (minute == 10)
+  if ((minute == 0) 
       | (minute == 15)
-      | (minute == 20)
-      | (minute == 25)
       | (minute == 30)
-      | (minute == 35)
-      | (minute == 40)
-      | (minute == 45)
-      | (minute == 50)
-      | (minute == 55)) {
-    lightup(WordAbout, Black);
+      | (minute == 45)) {
+    lightup(WordIts, Blue);
+    lightup(WordItIs, Black);
+    lightup(WordIt, Black);
+    lightup(WordIs, Black);
+    lightup(WordJoanne, Pink);
+    lightup(WordJo, Black);
   }
   else {
-    if ((minute == 6)
-        | (minute == 1)
-        | (minute == 11)
-        | (minute == 16)
-        | (minute == 21)
-        | (minute == 26)
-        | (minute == 31)
-        | (minute == 36)
-        | (minute == 41)
-        | (minute == 46)
-        | (minute == 51)
-        | (minute == 56)) {
-      lightup(WordAbout, whiteblue);
+    if (((minute >= 1) && (minute <= 14))
+        | ((minute >= 16) && (minute <= 29))
+        | ((minute >= 31) && (minute <= 44))
+        | ((minute >= 46) && (minute <= 59))
+        | ((minute >= 1) && (minute <= 14))) {
+      lightup(WordIts, Black);
+      lightup(WordItIs, midblue);
+      lightup(WordIt, Black);
+      lightup(WordIs, Black);
+      lightup(WordJoanne, Black);
+      lightup(WordJo, Red);
     }
-    else if ((minute == 7)
-             | (minute == 2)
-             | (minute == 17)
-             | (minute == 22)
-             | (minute == 27)
-             | (minute == 32)
-             | (minute == 37)
-             | (minute == 42)
-             | (minute == 47)
-             | (minute == 52)
-             | (minute == 57)) {
-      lightup(WordAbout, lightblue);
-    }
-    else if ((minute == 8)
-             | (minute == 13)
-             | (minute == 3)
-             | (minute == 18)
-             | (minute == 23)
-             | (minute == 28)
-             | (minute == 33)
-             | (minute == 38)
-             | (minute == 43)
-             | (minute == 48)
-             | (minute == 53)
-             | (minute == 58)) {
-      lightup(WordAbout, midblue);
-    }
-    else if ((minute == 9)
-             | (minute == 14)
-             | (minute == 4)
-             | (minute == 19)
-             | (minute == 24)
-             | (minute == 29)
-             | (minute == 34)
-             | (minute == 39)
-             | (minute == 44)
-             | (minute == 49)
-             | (minute == 54)
-             | (minute == 59)) {
-      lightup(WordAbout, darkblue);
-    }
-    else {
-      lightup(WordAbout, White);
+   
+  
 
-    }
-
-  }
-
-  if ((minute >= 0) && (minute < 5)) {
-    lightup(WordOclock, White);
-  }
-  else {
-    lightup(WordOclock, Black);
-  }
-
-
-  if (minute < 35) {
+ // if (minute < 35) {
+  if (minute <= 30) {
     //Set hour if minutes are less than 35
     switch (hour) {
       case 1:
       case 13:
-      
-        lightup(WordOne, White);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, White);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 113");
         break;
       case 2:
       case 14:
-        lightup(WordOne, Black);
-        lightup(WordTwo, White);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, White);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println(" Break 214");
         break;
       case 3:
       case 15:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, White);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, White);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 315");
         break;
       case 4:
       case 16:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, White);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, White);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 416");
         break;
       case 5:
       case 17:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, White);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, White);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 517");
         break;
       case 6:
       case 18:
-          lightup(Wordne, Black);
-       // lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, White);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-       // lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+          lightup(WordHOne, Black);
+       // lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, White);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 618");
         break;
       case 7:
       case 19:
-        lightup(Wordne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, White);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        //lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, White);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 719");
         break;
       case 8:
       case 20:
-        lightup(Wordne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, White);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-       // lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, White);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 820");
         break;
       case 9:
       case 21:
-        lightup(Wordne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        if (hour == 21){
-            lightup(WordNin, White);
-          }
-        else
-        {
-            lightup(WordNine, White);
-          }
-      
-        lightup(WordTen, Black);
-       // lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, White);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 921");
         break;
       case 10:
       case 22:
-      //  lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordCoffee, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        if ((dayOfWeek == 1) | (dayOfWeek == 7))
-        {
-          lightup(WordNine,Black);
-        }
-        else if (hour == 9)
-        {
-        lightup(WordNine, Black);
-        }
-        else 
-        {
-          lightup(WordNin, Black);
-        }
-        lightup(WordTen, White);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine,Black);
+        lightup(WordHTen, White);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 1022");
         break;
       case 11:
       case 23:
-      //  lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, White);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, White);
+        lightup(WordHTwelve, Black);
         Serial.println("Break 1123");
         break;
       case 00:
       case 12:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, White);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, White);
         Serial.println("Break 0012");
         break;
     }// end of case statement
-    if ((minute >= 0) && (minute < 5)) {
-      lightup(WordPast, Black);
+ //   if ((minute >= 0) && (minute < 5)) {
+    if ((minute >= 0) && (minute < 30)) {
+      lightup(WordMinutes, Black);
       lightup(WordTo,   Black);
     }
     else {
@@ -573,316 +513,2152 @@ void loop()
 
   }//end of if statement
 
-  else if (minute > 34) {
+  else if (minute > 31) {
     //Set hour if minutes are greater than 34
     switch (hour) {
       case 1:
       case 13:
         
-        lightup(WordOne, Black);
-        lightup(WordTwo, White);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, White);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 113");
         break;
       case 2:
       case 14:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, White);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, White);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 214");        
         break;
       case 3:
       case 15:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, White);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, White);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 315");
         break;
       case 4:
       case 16:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, White);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, White);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 416");        
         break;
       case 5:
       case 17:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, White);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, White);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 517 ");
         break;
       case 6:
       case 18:
-       // lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, White);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-       // lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, White);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 618");
         break;
       case 7:
       case 19:
-       // lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, White);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-       // lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, White);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 719");
         break;
       case 8:
       case 20:
-       // lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-      //  lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, White);
-        lightup(WordTen, Black);
-      //  lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, White);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 820");
         break;
       case 9:
       case 21:
-        //lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-       // lightup(WordFour, Black);
-       // lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        if ((dayOfWeek == 1) | (dayOfWeek == 7))
-        {
-          lightup(WordNine,Black);
-        }
-        else if (hour == 9)
-        {
-        lightup(WordNine, Black);
-        }
-        else 
-        {
-          lightup(WordNin, Black);
-        }
-        lightup(WordTen, White);
-       // lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine,Black);
+        lightup(WordHTen, White);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 921");
         break;
       case 10:
       case 22:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, White);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, White);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 1022");
         break;
       case 11:
       case 23:
-        lightup(WordOne, Black);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, White);
+        lightup(WordHOne, Black);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, White);
         Serial.println("Half Break 1123");
         break;
       case 00:
       case 12:
-        lightup(WordOne, White);
-        lightup(WordTwo, Black);
-        lightup(WordThree, Black);
-        lightup(WordFour, Black);
-        lightup(WordFive, Black);
-        lightup(WordSix, Black);
-        lightup(WordSeven, Black);
-        lightup(WordEight, Black);
-        lightup(WordNine, Black);
-        lightup(WordTen, Black);
-        lightup(WordEleven, Black);
-        lightup(WordTwelve, Black);
+        lightup(WordHOne, White);
+        lightup(WordHTwo, Black);
+        lightup(WordHThree, Black);
+        lightup(WordHFour, Black);
+        lightup(WordHFive, Black);
+        lightup(WordHSix, Black);
+        lightup(WordHSeven, Black);
+        lightup(WordHEight, Black);
+        lightup(WordHNine, Black);
+        lightup(WordHTen, Black);
+        lightup(WordHEleven, Black);
+        lightup(WordHTwelve, Black);
         Serial.println("Half Break 0012");
         break;
     }// end of case statement
-    lightup(WordPast, Black);
-    lightup(WordTo,   White);
+//    lightup(WordPast, Black); ///////////////////////////// ??????????????????????????????????
+//    lightup(WordTo,   White);
   } // end of if statement to test for greater than 34
 
-  if ((minute >= 5) && (minute < 10)) {
-    lightup(WordMinFive, White);
-    lightup(WordMinTen, Black);
+  if (minute == 0) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
     lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
     lightup(WordTwenty, Black);
-    lightup(WordMinutes, White);
-    lightup(WordHalf, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, lightblue);          
   }
-  else if ((minute >= 10) && (minute < 15)) {
-    lightup(WordMinFive, Black);
-    lightup(WordMinTen, White);
+  else if (minute == 1) {
+    lightup(WordOne, White);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
     lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
     lightup(WordTwenty, Black);
-    lightup(WordMinutes, White);
-    lightup(WordHalf, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
   }
-  else if ((minute >= 15) && (minute < 20)) {
-    lightup(WordMinFive, Black);
-    lightup(WordMinTen, Black);
-    lightup(WordQuarter, White);
+  else if (minute == 2) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, White);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
     lightup(WordTwenty, Black);
-    lightup(WordMinutes, Black);
-    lightup(WordHalf, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
   }
-  else if ((minute >= 20) && (minute < 25)) {
-    lightup(WordMinFive, Black);
-    lightup(WordMinTen, Black);
+  else if (minute == 3) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, White);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
     lightup(WordQuarter, Black);
-    lightup(WordTwenty, White);
-    lightup(WordMinutes, White);
-    lightup(WordHalf, Black);
-  }
-  else if ((minute >= 25) && (minute < 30)) {
-    lightup(WordMinFive, White);
-    lightup(WordMinTen, Black);
-    lightup(WordQuarter, Black);
-    lightup(WordTwenty, White);
-    lightup(WordMinutes, White);
-    lightup(WordHalf, Black);
-  }
-  else if ((minute >= 30) && (minute < 35)) {
-    lightup(WordMinFive, Black);
-    lightup(WordMinTen, Black);
-    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
     lightup(WordTwenty, Black);
-    lightup(WordMinutes, Black);
-    lightup(WordHalf, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
   }
-  else if ((minute >= 35) && (minute < 40)) {
-    lightup(WordMinFive, White);
-    lightup(WordMinTen, Black);
+  else if (minute == 4) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, White);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
     lightup(WordQuarter, Black);
-    lightup(WordTwenty, White);
-    lightup(WordMinutes, White);
-    lightup(WordHalf, Black);
-  }
-  else if ((minute >= 40) && (minute < 45)) {
-    lightup(WordMinFive, Black);
-    lightup(WordMinTen, Black);
-    lightup(WordQuarter, Black);
-    lightup(WordTwenty, White);
-    lightup(WordMinutes, White);
-    lightup(WordHalf, Black);
-  }
-  else if ((minute >= 45) && (minute < 50)) {
-    lightup(WordMinFive, Black);
-    lightup(WordMinTen, Black);
-    lightup(WordQuarter, White);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
     lightup(WordTwenty, Black);
-    lightup(WordMinutes, Black);
-    lightup(WordHalf, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
   }
-  else if ((minute >= 50) && (minute < 55)) {
-    lightup(WordMinFive, Black);
-    lightup(WordMinTen, White);
+  else if (minute == 5) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, White);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
     lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
     lightup(WordTwenty, Black);
-    lightup(WordMinutes, White);
-    lightup(WordHalf, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
   }
-  else if ((minute >= 55) && (minute <= 59)) {
-    lightup(WordMinFive, White);
-    lightup(WordMinTen, Black);
+  else if (minute == 6) {
+    lightup(WordOne, White);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, White);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
     lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
     lightup(WordTwenty, Black);
-    lightup(WordMinutes, White);
-    lightup(WordHalf, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
   }
-  else if ((minute >= 0) && (minute < 5)) {
-    lightup(WordMinFive, Black);
-    lightup(WordMinTen, Black);
+  else if (minute == 7) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, White);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
     lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
     lightup(WordTwenty, Black);
-    lightup(WordMinutes, Black);
-    lightup(WordHalf, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 8) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, White);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 9) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, White);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 10) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, White);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
 
+
+
+
+
+  if (minute == 11) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, White);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);          
+  }
+  else if (minute == 12) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, White);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 13) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, White);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 14) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, White);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 15) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, White);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+    lightup(WordA, White);
+  }
+  else if (minute == 16) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, White);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+    lightup(WordA, Black);
+  }
+  else if (minute == 17) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, White);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 18) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, White);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 19) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, White);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 20) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 21) {
+    lightup(WordOne, White);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
   }
 
+
+
+
+  if (minute == 22) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, White);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);          
+  }
+  else if (minute == 23) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, White);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 24) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, White);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 25) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, White);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 26) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, White);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 27) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, White);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 28) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, White);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 29) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, White);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 30) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordHalf, White);    
+    lightup(WordTo, Black);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, White); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 31) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, White);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordHalf, Black);   
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 32) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, White);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+
+
+
+  if (minute == 33) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, White);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, lightblue);          
+  }
+  else if (minute == 34) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, White);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 35) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, White);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 36) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, White);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 37) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, White);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 38) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, White);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 39) {
+    lightup(WordOne, White);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 40) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, White);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 41) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, White);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 42) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, White);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 43) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, White);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+
+
+
+  if (minute == 44) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, White);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, lightblue);          
+  }
+  else if (minute == 45) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, White);
+    lightup(WordA, White);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 46) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, White);
+    lightup(WordQuarter, Black);
+    lightup(WordA, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 47) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, White);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 48) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, White);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 49) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, White);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 50) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, White);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 51) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, White);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 52) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, White);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 53) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, White);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 54) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, White);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+
+
+
+  if (minute == 55) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, White);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, lightblue);          
+  }
+  else if (minute == 56) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, White);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 57) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, Black);
+    lightup(WordThree, White);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 58) {
+    lightup(WordOne, Black);
+    lightup(WordTwo, White);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, Black); 
+    lightup(WordMinutes, White);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  else if (minute == 59) {
+    lightup(WordOne, White);
+    lightup(WordTwo, Black);
+    lightup(WordThree, Black);
+    lightup(WordFour, Black);
+    lightup(WordFive, Black);
+    lightup(WordSix, Black);
+    lightup(WordSeven, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordEight, Black);
+    lightup(WordNine, Black);
+    lightup(WordTen, Black);
+    lightup(WordEleven, Black);
+    lightup(WordTwelve, Black);
+    lightup(WordThirteen, Black);
+    lightup(WordFourteen, Black);
+    lightup(WordQuarter, Black);
+    lightup(WordSixteen, Black);
+    lightup(WordSeventeen, Black);
+    lightup(WordEighteen, Black);
+    lightup(WordNineteen, Black);
+    lightup(WordTwenty, Black);
+    lightup(WordTo, White);
+    lightup(WordMinute, White); 
+    lightup(WordMinutes, Black);    
+    lightup(WordPast, Black); 
+    lightup(WordOclock, Black);
+  }
+  
 }
 
 void TimeOfDay() {
