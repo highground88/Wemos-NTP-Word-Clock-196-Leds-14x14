@@ -1,4 +1,4 @@
-# WordClockEnglish
+# 196 LED / 14x14 Word Clock
 
 Heavily based on Bizit524's excellent code! : https://github.com/bizit524/WordClockEnglish
 
