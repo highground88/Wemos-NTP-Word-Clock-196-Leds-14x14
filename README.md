@@ -1,4 +1,4 @@
-# Wemos NTP Clock with WS2812b with 196 Leds 14x14 (Adafruit Neopixel + ESP8266)
+# Wemos NTP Clock with 196 WS2812b Leds, 14x14 (Adafruit Neopixel + ESP8266)
 
 Heavily based on Bizit524's excellent code! : https://github.com/bizit524/WordClockEnglish
 
