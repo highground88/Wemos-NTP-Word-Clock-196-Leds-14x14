@@ -9,7 +9,7 @@ strDateTime dateTime;
 #define PIN            D5
 #define NUMPIXELS     197
 
-
+int passFlag = 0;  //For stuck 12.
 
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis;
@@ -17,13 +17,13 @@ unsigned long currentMillis;
 //change update values if debugging is on to make debugging quicker
 const unsigned long period = 10000;
 //change to 0 for debugging 1 is normal operation 
-int debugging = 1;
+int debugging = 1;                                      /////CHANGED
 
 
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
  
-byte second, minute, hour, dayOfWeek, day, month, year;
+byte second, minute, hour, dayOfWeek, month, year;  //day
 byte decToBcd(byte val)
 {
   return ( (val / 10 * 16) + (val % 10) );
@@ -47,13 +47,17 @@ int WordMinutes[] = {83,82,81,80,79,78,77, -1};
 int WordMinuteTo[] = {83,82,81,80,79,78,73,72, -1};
 int WordMinutesTo[] = {83,82,81,80,79,78,77,73,72, -1};
 int WordTo[] = {73,72, -1};
+int Wordo[] = {72, -1};  //Fix weird TO bug after oclock.
 int WordA[] = {173, -1};
 int WordPast[] = {76,75,74,73, -1};
+int WordPas[] = {76,75,74, -1};
 int WordOclock[] = {8,9,10,11,12,13, -1};
 
 //Minutes [UPPER]
 int WordOne[] = {151,152,153, -1};
+int Wordne[] = {152,153, -1}; //FIX faulty TWO
 int WordTwo[] = {149,150,151, -1};
+int WordTw[] = {149,150, -1};  //FIX faulty ONE
 int WordThree[] = {84,85,86,87,88, -1};
 int WordFour[] = {112,113,114,115, -1};
 int WordFive[] = {122,123,124,125, -1};
@@ -61,8 +65,11 @@ int WordSix[] = {139,138,137, -1};
 int WordSeven[] = {140,141,142,143,144, -1};
 int WordEight[] = {88,89,90,91,92, -1};
 int WordNine[] = {133,132,131,130, -1};
+int WordNin[] = {133,132,131,130, -1};  //FIX TEN
 int WordTen[] = {149,130,121, -1};
+int WordTn[] = {149,121, -1};  //FIX NINE
 int WordEleven[] = {106,105,104,103,102,101, -1};
+int Wordleven[] = {105,104,103,102,101, -1};  //FIX TWELVE
 int WordTwelve[] = {111,110,109,108,107,106, -1};
 int WordTwelv[] = {111,110,109,108,107, -1};
 int WordThirteen[] = {161,160,159,158,157,156,155,154, -1};
@@ -77,7 +84,9 @@ int WordHalf[] = {168,169,170,171, -1};
 
 //Hours [LOWER]
 int WordHOne[] = {58,59,60, -1};
+int WordHne[] = {59,60, -1}; //FIX TWO
 int WordHTwo[] = {56,57,58, -1};
+int WordHTw[] = {56,57, -1}; //FIX ONE
 int WordHThree[] = {99,96,71,68,43, -1};
 int WordHFour[] = {33,34,35,36, -1};
 int WordHFive[] = {55,54,53,52, -1};
@@ -131,6 +140,7 @@ uint32_t Pink = pixels.Color(255, 153, 153);
 //values for brightness
 int dayBrightness = 100;
 int nightBrightness = 30;
+
 //values for debugging hour/day  i increment 
 byte i;
 byte h ;
@@ -139,9 +149,12 @@ byte d ;
 void setup()
 {
   //used for manual debugging/ set start time 
-   i = 0 ;
-   h = 8;
+   i = 57 ;
+   h = 9;
    d = 1;
+//   i = 0 ;
+//   h = 8;
+//   d = 1;   
   //start pixels
   pixels.begin();
   blank();
@@ -149,15 +162,17 @@ void setup()
   Serial.begin(115200);
   Serial.println();
   lightup(WordWifi, Red);
-  Serial.println("Booted");
-  Serial.println("Connecting to Wi-Fi");
+  Serial.println("System Booted");
+  Serial.println("Connecting to Wi-Fi....");
 // We start by connecting to a WiFi network
   WiFiManager MyWifiManager;
   MyWifiManager.autoConnect("Word Clock Setup");
-  Serial.println("WiFi connected");
+  Serial.println("....WiFi connected!");
   pixels.setBrightness(dayBrightness);
 
   startMillis = millis();  //initial start time
+  pixels.clear();
+ //   blank();  //??
 //Serial print if debug is on 
   if (debugging == 0)
   {
@@ -165,7 +180,8 @@ void setup()
   }
   else {
     Serial.println("Debug off");
-    test(); //run basic screen tests
+ //   test(); //run basic screen tests    /////CHANGED (NO TEST)
+
     }
 
 }
@@ -219,45 +235,64 @@ void loop()
       | (minute == 30)
       | (minute == 45)) {
     lightup(WordIts, Blue);
-//    lightup(WordItIs, Black);
-//    lightup(WordItjustS, Black);
     lightup(WordIs, Black);
     lightup(WordJoanne, Pink);
   }
-  else if (((minute >= 1) && (minute <= 14))
-        | ((minute >= 16) && (minute <= 29))
-        | ((minute >= 31) && (minute <= 44))
-        | ((minute >= 46) && (minute <= 59))) {
-//      lightup(WordIts, Black);
+  else {
       lightup(WordItjustS, Black);
       lightup(WordItIs, midblue);
       lightup(Wordanne, Black);
       lightup(WordJo, Red);
     }
+  
+//  else if (((minute >= 1) && (minute <= 14))
+//        | ((minute >= 16) && (minute <= 29))
+//        | ((minute >= 31) && (minute <= 44))
+//        | ((minute >= 46) && (minute <= 59))) {
+//      lightup(WordItjustS, Black);
+//      lightup(WordItIs, midblue);
+//      lightup(Wordanne, Black);
+//      lightup(WordJo, Red);
+//    }
+
+   
+
+//// NEW 12 O'CLOCK INITAL WIPE FIX LOOP ROUTINE
+  if ((minute != 0) && (passFlag <= 3))  {   // Correct time check counter
+      passFlag++; 
+      Serial.println("NTP time received. Flag set.");
+   }
+
+  if (passFlag <= 3) {
+      lightup(WordHTwelve, Black);
+      lightup(WordOclock, Black);
+      Serial.println("12 O'Clock wipe routine run");
+      Serial.print("Flag ");
+      Serial.print(passFlag)  ;
+      Serial.print(" of 3");}
+      
+
+  
    
   if (minute <= 30) {
-    //Set hour if minutes are less than 30
+    //Set hour if minutes are less than 30 (current hour remains)
     switch (hour) {
       case 1:
       case 13:
         lightup(WordHOne, White);
-        lightup(WordHTwo, Black);
         lightup(WordHTwelve, Black);
         Serial.println("Break 113");
         break;
       case 2:
       case 14:
-        lightup(WordHOne, Black);
+        lightup(WordHne, Black);
         lightup(WordHTwo, White);
-        lightup(WordHThree, Black);
         Serial.println(" Break 214");
         break;
       case 3:
       case 15:
         lightup(WordHTwo, Black);
         lightup(WordHThree, White);
-        lightup(WordHFour, Black);
-        lightup(WordHTwelv, Black);         // FIX leftover TWELVE
         Serial.println("Break 315");
         break;
       case 4:
@@ -265,62 +300,52 @@ void loop()
 
         lightup(WordHThree, Black);
         lightup(WordHFour, White);
-        lightup(WordHFive, Black);
         Serial.println("Break 416");
         break;
       case 5:
       case 17:
         lightup(WordHFour, Black);
         lightup(WordHFive, White);
-        lightup(WordHSix, Black);
         Serial.println("Break 517");
         break;
       case 6:
       case 18:
         lightup(WordHFive, Black);
         lightup(WordHSix, White);
-        lightup(WordHSeven, Black);
         Serial.println("Break 618");
         break;
       case 7:
       case 19:
         lightup(WordHSix, Black);
         lightup(WordHSeven, White);
-        lightup(WordHEight, Black);
         Serial.println("Break 719");
         break;
       case 8:
       case 20:
         lightup(WordHSeven, Black);
         lightup(WordHEight, White);
-        lightup(WordHNine, Black);
-        lightup(WordHWelve, Black);         // FIX leftover 'OCLOCK & TWELVE
         Serial.println("Break 820");
         break;
       case 9:
       case 21:
         lightup(WordHEight, Black);
         lightup(WordHNine, White);
-        lightup(WordHTen, Black);
         Serial.println("Break 921");
         break;
       case 10:
       case 22:
         lightup(WordHNine,Black);
         lightup(WordHTen, White);
-        lightup(WordHEleven, Black);
         Serial.println("Break 1022");
         break;
       case 11:
       case 23:
         lightup(WordHTen, Black);
         lightup(WordHEleven, White);
-        lightup(WordHTwelve, Black);
         Serial.println("Break 1123");
         break;
       case 00:
       case 12:
-        lightup(WordHOne, Black);
         lightup(WordHEleven, Black);
         lightup(WordHTwelve, White);
         Serial.println("Break 0012");
@@ -329,83 +354,71 @@ void loop()
   }//end of if statement
 
   else if (minute >= 31) {
-    //Set hour if minutes are greater than 34
+    //Set hour if minutes are greater than 34, bump hour up
     switch (hour) {
       case 1:
       case 13:
-        lightup(WordHOne, Black);
+        lightup(WordHne, Black);
         lightup(WordHTwo, White);
-        lightup(WordHThree, Black);
         Serial.println("Half Break 113");
         break;
       case 2:
       case 14:
         lightup(WordHTwo, Black);
         lightup(WordHThree, White);
-        lightup(WordHFour, Black);
-        lightup(WordHTwelv, Black);         // FIX leftover TWELVE
         Serial.println("Half Break 214");        
         break;
       case 3:
       case 15:
         lightup(WordHThree, Black);
         lightup(WordHFour, White);
-        lightup(WordHFive, Black);
         Serial.println("Half Break 315");
         break;
       case 4:
       case 16:
         lightup(WordHFour, Black);
         lightup(WordHFive, White);
-        lightup(WordHSix, Black);
         Serial.println("Half Break 416");        
         break;
       case 5:
       case 17:
         lightup(WordHFive, Black);
         lightup(WordHSix, White);
-        lightup(WordHSeven, Black);
         Serial.println("Half Break 517 ");
         break;
       case 6:
       case 18:
         lightup(WordHSix, Black);
         lightup(WordHSeven, White);
-        lightup(WordHEight, Black);
         Serial.println("Half Break 618");
         break;
       case 7:
       case 19:
         lightup(WordHSeven, Black);
-        lightup(WordHEight, White);
-        lightup(WordHNine, Black);
-        lightup(WordHWelve, Black);         // FIX leftover TWELVE
+        lightup(WordHWelve, Black);  
+        lightup(WordHEight, White);       // FIX leftover TWELVE
         Serial.println("Half Break 719");
         break;
       case 8:
       case 20:
         lightup(WordHEight, Black);
         lightup(WordHNine, White);
-        lightup(WordHTen, Black);
         Serial.println("Half Break 820");
         break;
       case 9:
       case 21:
         lightup(WordHNine,Black);
         lightup(WordHTen, White);
-        lightup(WordHEleven, Black);
         Serial.println("Half Break 921");
         break;
       case 10:
       case 22:
         lightup(WordHTen, Black);
         lightup(WordHEleven, White);
-        lightup(WordHTwelve, Black);
         Serial.println("Half Break 1022");
         break;
       case 11:
       case 23:
-        lightup(WordHOne, Black);
         lightup(WordHEleven, Black);
         lightup(WordHTwelve, White);
         Serial.println("Half Break 1123");
@@ -413,20 +426,15 @@ void loop()
       case 00:
       case 12:
         lightup(WordHOne, White);
-        lightup(WordHTwo, Black);
         lightup(WordHTwelve, Black);
         Serial.println("Half Break 0012");
         break;
     }// end of case statement
   } // end of if statement to test for greater than 30
-  if ((hour != 12)                          // FIX leftover 'OCLOCK & TWELVE
-      | (hour != 8) 
-      | (hour != 3)) {
-      lightup(WordHTwelve, Black);      
-  }
-  if (minute != 0) {     // FIX leftover 'OCLOCK 
-    lightup(WordOclock, Black);
-  }
+
+
+/// MINUTES
+        
   if (minute == 0) {
     lightup(WordOne, Black);
     lightup(WordTo, Black);
@@ -435,15 +443,18 @@ void loop()
     lightup(WordOclock, darkblue);      
   }
   else if (minute == 1) {
+    lightup(Wordo, Black);
     lightup(WordOne, White);
     lightup(WordMinute, White); 
     lightup(WordPast, White); 
     lightup(WordOclock, Black);
+
   }
   else if (minute == 2) {
     lightup(WordTwo, White);
-    lightup(WordOne, Black);
+    lightup(Wordne, Black);
     lightup(WordPast, White); 
+    lightup(WordMinute, Black); 
   }
   else if (minute == 3) {
     lightup(WordTwo, Black);
@@ -483,7 +494,7 @@ void loop()
     lightup(WordPast, White); 
   }
   else if (minute == 10) {
-    lightup(WordNine, Black);
+    lightup(WordNin, Black);
     lightup(WordTen, White);
     lightup(WordPast, White); 
   }
@@ -493,7 +504,7 @@ void loop()
     lightup(WordPast, White);  
   }
   else if (minute == 12) {
-    lightup(WordEleven, Black);
+    lightup(Wordleven, Black);
     lightup(WordTwelve, White);
     lightup(WordPast, White); 
   }
@@ -545,7 +556,7 @@ void loop()
     lightup(WordPast, White); 
   }
   else if (minute == 22) {
-    lightup(WordOne, Black);
+    lightup(Wordne, Black);
     lightup(WordTwo, White);
     lightup(WordTwenty, White); 
     lightup(WordPast, White);        
@@ -604,7 +615,7 @@ void loop()
     lightup(WordHalf, Black);   
     lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
-    lightup(WordPast, Black); 
+    lightup(WordPas, Black); 
    }
   else if (minute == 32) {
     lightup(WordEight, White);
@@ -657,7 +668,7 @@ void loop()
   }
   else if (minute == 39) {
     lightup(WordOne, White);
-    lightup(WordTwo, Black);
+    lightup(WordTw, Black);
     lightup(WordTwenty, White);
     lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
@@ -732,7 +743,7 @@ void loop()
   }
   else if (minute == 51) {
     lightup(WordNine, White);
-    lightup(WordTen, Black);
+    lightup(WordTn, Black);
     lightup(WordTo, midblue);
     lightup(WordMinutes, White);    
   }
@@ -780,7 +791,7 @@ void loop()
   }
   else if (minute == 59) {
     lightup(WordOne, White);
-    lightup(WordTwo, Black);
+    lightup(WordTw, Black);
     lightup(WordTo, midblue);
     lightup(WordMinutes, Black);  
     lightup(WordMinute, Black);    
@@ -819,7 +830,7 @@ void displayTime()
   if (currentMillis - startMillis >= period)  //test whether the period has elapsed
   {
     Serial.println("Time Check rate reached");
-    readtime(&second, &minute, &hour, &dayOfWeek, &day, &month, &year);  
+    readtime(&second, &minute, &hour, &dayOfWeek, &month, &year);  
     startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
 
   }
@@ -839,20 +850,16 @@ void displayTime()
 
 
 
-void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *day, byte *month, byte *year) {
+void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
   if (debugging == 1){
       dateTime = NTPch.getNTPtime(0.0, 1);
-  //    10 setSendInterval(unsigned long _sendInterval);  // in seconds
-  //    15 setRecvTimeout(unsigned long _recvTimeout);    // in seconds
       if(dateTime.valid){
       *second = dateTime.second;
       *minute = dateTime.minute;
       *hour = dateTime.hour;
       *dayOfWeek = dateTime.dayofWeek;
-      *day = dateTime.day;
       *month = dateTime.month;
       *year = dateTime.year;
-
         }
       }
     else {
