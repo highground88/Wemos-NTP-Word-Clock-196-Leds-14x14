@@ -1,4 +1,5 @@
 #include <NTPtimeESP.h>
+//NTPtime NTPch("pool.ntp.org");   // Choose server pool as required
 NTPtime NTPch("uk.pool.ntp.org");   // Choose server pool as required
 strDateTime dateTime;
 #include <ESP8266WiFi.h>
@@ -15,7 +16,7 @@ unsigned long startMillis;  //some global variables available anywhere in the pr
 unsigned long currentMillis;
 
 //change update values if debugging is on to make debugging quicker
-const unsigned long period = 11000;
+const unsigned long period = 10000;
 //change to 0 for debugging 1 is normal operation 
 int debugging = 1;                                 
 
@@ -101,9 +102,9 @@ int WordHTwelve[] = {48,47,46,45,44,43, -1};
 int WordHTwelv[] = {48,47,46,45,44, -1};   // FIX leftover TWELVE to prevent cross with THREE
 int WordHWelve[] = {47,46,45,44,43, -1};   // FIX leftover TWELVE to prevent cross with EIGHT
 //BONUS WORDS
-int WordCoffee[] = {23,22,21,20,19,18,14, -1};
-int WordTea[] = {17,16,15,14, -1};
-int WordBeer[] = {27,26,25,24,14, -1};
+int WordCoffee[] = {23,22,21,20,19,18, -1};
+int WordTea[] = {17,16,15, -1};
+int WordBeer[] = {27,26,25,24, -1};
 int WordJo[] = {195,194, -1};
 int WordJoanne[] = {195,194,193,192,191,190, -1};
 int Wordanne[] = {193,192,191,190, -1};
@@ -128,6 +129,9 @@ uint32_t Black = pixels.Color(0, 0, 0);
 uint32_t White = pixels.Color(255, 255, 255);
 uint32_t Green = pixels.Color(0, 255, 0);
 uint32_t Red = pixels.Color(255, 0, 0);
+uint32_t Red3 = pixels.Color(235, 0, 0);
+uint32_t Red2 = pixels.Color(215, 0, 0);
+uint32_t Red1 = pixels.Color(205, 0, 0);
 uint32_t Gold = pixels.Color(255, 204, 0);
 uint32_t Grey = pixels.Color(30, 30, 30);
 uint32_t Blue = pixels.Color(0, 0, 255);
@@ -295,7 +299,44 @@ void loop()
       lightup(Wordanne, Black);
       lightup(WordJo, Red);
     }
-   
+
+
+//// NEW YEARS EVE COUNTDOWN
+//   if ( (day == 12) && (month == 2) && (minute == 36) && (hour == 7) && (second >= 45) ) {
+//      Serial.print("NYE1");
+//      delay(1000);      
+//      lightup(WordHTen, Purple);   
+//      delay(1000);
+//      lightup(WordHNine, Yellow);   
+//      lightup(WordHTen, Black);         
+//      delay(1000);
+//      lightup(WordHEight, Turquoise);   
+//      lightup(WordHNine, Black);   
+//      delay(1000);
+//      lightup(WordHSeven, Blue);   
+//      lightup(WordHEight, Black);  
+//      delay(1000);
+//      lightup(WordHSix, Pink); 
+//      lightup(WordHSeven, Black);    
+//      delay(1000);
+//      lightup(WordHFive, Orange); 
+//      lightup(WordHSix, Black);  
+//      delay(1000);
+//      lightup(WordHFour, Green);  
+//      lightup(WordHFive, Black);  
+//      delay(1000);
+//      lightup(WordHThree, Red); 
+//      lightup(WordHFour, Black);   
+//      delay(1000);
+//      lightup(WordHTwo, Turquoise);  
+//      lightup(WordHThree, Black);  
+//      delay(1000);
+//      lightup(WordHOne, Yellow); 
+//      lightup(WordHTw, Black);  
+//      delay(1000);
+//      lightup(WordHOne, Black);        
+//      }
+
 
 //// NEW 12 O'CLOCK INITAL WIPE FIX LOOP ROUTINE
   if ((minute != 0) && (passFlag <= 3))  {   // Correct time check counter
@@ -310,8 +351,8 @@ void loop()
       Serial.print("Flag #");
       Serial.print(passFlag)  ;
       Serial.println(" of 3");}
-      
 
+   
   
    
   if (minute <= 30) {
@@ -885,16 +926,25 @@ void displayTime()
       Serial.print("0");
     }
     Serial.print(minute);
+    
+    if (second < 10) {
+    Serial.print("0");
+    }
+    Serial.print(second);
+    
+    Serial.print("   Day of week: ");
+    Serial.println(dayOfWeek);
     Serial.print("   Date: ");
     Serial.print(day);
     Serial.print("   Month: ");
     Serial.print(month);
     Serial.print("   Day of week: ");
     Serial.println(dayOfWeek);
-    delay(5000);
+    delay(500);
+    
+
 
 }
-
 
 
 void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *day, byte *month, byte *year) {
@@ -936,7 +986,7 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *day
  
 }
 
-void lightup(int Word[], uint32_t Colour) {
+void lightup(int Word[], uint32_t Colour) {   ///                                   ?????????????MODIFY
   
   for (int x = 0; x < pixels.numPixels() + 1; x++) {
     if (Word[x] == -1) {
