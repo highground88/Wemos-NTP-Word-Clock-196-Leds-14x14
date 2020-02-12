@@ -9,21 +9,21 @@ strDateTime dateTime;
 #define PIN            D5
 #define NUMPIXELS     197
 
-int passFlag = 0;  //For stuck 12.
+int passFlag = 0;  //For stuck 'Twelve / Oclock' reset loop.
 
 unsigned long startMillis;  //some global variables available anywhere in the program
 unsigned long currentMillis;
 
 //change update values if debugging is on to make debugging quicker
-const unsigned long period = 10000;
+const unsigned long period = 11000;
 //change to 0 for debugging 1 is normal operation 
-int debugging = 1;                                      /////CHANGED
+int debugging = 1;                                 
 
 
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
  
-byte second, minute, hour, dayOfWeek, month, year;  //day
+byte second, minute, hour, dayOfWeek, day, month, year;  
 byte decToBcd(byte val)
 {
   return ( (val / 10 * 16) + (val % 10) );
@@ -44,6 +44,7 @@ int WordItjustS[] = {185, -1}; //Just the ['S]
 int WordAbout[] = {197, -1};
 int WordMinute[] = {83,82,81,80,79,78, -1};
 int WordMinutes[] = {83,82,81,80,79,78,77, -1};
+int WordMinSonly[] = {77, -1};
 int WordMinuteTo[] = {83,82,81,80,79,78,73,72, -1};
 int WordMinutesTo[] = {83,82,81,80,79,78,77,73,72, -1};
 int WordTo[] = {73,72, -1};
@@ -136,6 +137,14 @@ uint32_t lightblue = pixels.Color(153, 204, 255);
 uint32_t midblue = pixels.Color(0, 102, 204);
 uint32_t darkblue = pixels.Color(0, 0, 255);
 uint32_t Pink = pixels.Color(255, 153, 153);
+uint32_t Turquoise = pixels.Color(0, 213, 255);
+uint32_t Purple = pixels.Color(255, 0, 205);
+uint32_t Orange = pixels.Color(255, 100, 0);
+uint32_t Yellow = pixels.Color(255, 247, 0);
+
+
+
+
 
 //values for brightness
 int dayBrightness = 100;
@@ -193,7 +202,33 @@ void loop()
   displayTime(); // display the real-time clock data on the Serial Monitor  and the LEDS,
 
   //home time serial for debugging if statements
-  if ((dayOfWeek != 1) && (dayOfWeek != 7)) {
+  if ((dayOfWeek != 6) && (dayOfWeek != 7)) {  //WEEKDAYS & SUN
+    if ((hour > 5) && (hour < 10)) {
+      lightup(WordBeer, Black);
+      lightup(WordTea, Black);
+      lightup(WordQuestion, Brown);
+      lightup(WordCoffee, Brown);
+      Serial.print("coffee time");
+    }
+    else if (hour == 10) {
+      lightup(WordQuestion, Black);
+      lightup(WordCoffee, Black);
+      Serial.print("clear the drinks");
+    }
+    else if (hour == 15) {
+      lightup(WordTea, Green);
+      lightup(WordQuestion, Green);
+      Serial.print("tea time");
+    }
+    else if (hour == 16) {
+
+      lightup(WordTea, Black);
+      lightup(WordQuestion, Black);
+      Serial.print("clear the drinks");
+    }
+  }
+  
+  if ((dayOfWeek == 6) && (dayOfWeek == 7)) {    /// FRI,SAT
     if ((hour > 5) && (hour < 10)) {
       lightup(WordBeer, Black);
       lightup(WordTea, Black);
@@ -230,6 +265,22 @@ void loop()
     }
   }
 
+ if ((day == 1) && (month == 2)) {  // BIRTHDAY (01 FEB)
+      lightup(WordHappy, Purple);
+      delay(150);
+      lightup(WordBirthday, Orange);
+      delay(5000);
+      lightup(WordHappy, Orange);
+      delay(150);
+      lightup(WordBirthday, Purple);
+      Serial.print("bday!");
+    }
+    else if ((day != 12) && (month != 2)) {
+      lightup(WordHappy, Black);
+      lightup(WordBirthday, Black);
+    }
+
+
   if ((minute == 0) 
       | (minute == 15)
       | (minute == 30)
@@ -244,17 +295,6 @@ void loop()
       lightup(Wordanne, Black);
       lightup(WordJo, Red);
     }
-  
-//  else if (((minute >= 1) && (minute <= 14))
-//        | ((minute >= 16) && (minute <= 29))
-//        | ((minute >= 31) && (minute <= 44))
-//        | ((minute >= 46) && (minute <= 59))) {
-//      lightup(WordItjustS, Black);
-//      lightup(WordItIs, midblue);
-//      lightup(Wordanne, Black);
-//      lightup(WordJo, Red);
-//    }
-
    
 
 //// NEW 12 O'CLOCK INITAL WIPE FIX LOOP ROUTINE
@@ -267,9 +307,9 @@ void loop()
       lightup(WordHTwelve, Black);
       lightup(WordOclock, Black);
       Serial.println("12 O'Clock wipe routine run");
-      Serial.print("Flag ");
+      Serial.print("Flag #");
       Serial.print(passFlag)  ;
-      Serial.print(" of 3");}
+      Serial.println(" of 3");}
       
 
   
@@ -793,8 +833,8 @@ void loop()
     lightup(WordOne, White);
     lightup(WordTw, Black);
     lightup(WordTo, midblue);
-    lightup(WordMinutes, Black);  
-    lightup(WordMinute, Black);    
+    lightup(WordMinSonly, Black);  
+    lightup(WordMinute, White);    
   }
   
 }
@@ -830,10 +870,11 @@ void displayTime()
   if (currentMillis - startMillis >= period)  //test whether the period has elapsed
   {
     Serial.println("Time Check rate reached");
-    readtime(&second, &minute, &hour, &dayOfWeek, &month, &year);  
+    readtime(&second, &minute, &hour, &dayOfWeek, &day, &month, &year);  
     startMillis = currentMillis;  //IMPORTANT to save the start time of the current LED state.
 
   }
+    Serial.print("Time: ");
         if (hour < 10) {
       Serial.print("0");
     }
@@ -843,14 +884,20 @@ void displayTime()
     if (minute < 10) {
       Serial.print("0");
     }
-    Serial.println(minute);
+    Serial.print(minute);
+    Serial.print("   Date: ");
+    Serial.print(day);
+    Serial.print("   Month: ");
+    Serial.print(month);
+    Serial.print("   Day of week: ");
+    Serial.println(dayOfWeek);
     delay(5000);
 
 }
 
 
 
-void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *month, byte *year) {
+void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *day, byte *month, byte *year) {
   if (debugging == 1){
       dateTime = NTPch.getNTPtime(0.0, 1);
       if(dateTime.valid){
@@ -859,6 +906,7 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
       *hour = dateTime.hour;
       *dayOfWeek = dateTime.dayofWeek;
       *month = dateTime.month;
+      *day = dateTime.day;
       *year = dateTime.year;
         }
       }
@@ -882,7 +930,8 @@ void readtime(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byte *mon
       *second = dateTime.second;
       *dayOfWeek = d;
       *month = dateTime.month;
-      *year = dateTime.year;   
+      *year = dateTime.year;
+      *day = dateTime.day;   
       }
  
 }
